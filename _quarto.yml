@@ -8,10 +8,12 @@ website:
     left:
       - text: Início
         href: index.qmd
-      - text: Aula 1
+      - text: Aulas
         href: aula1.qmd
       - text: Sobre mim
         href: about.qmd
+      - text: Exercícios
+        href: Exercícios.qmd
     page-footer: 
     center: "© 2026 • Joyce Beatriz • Ecologia de Paisagens"
 
