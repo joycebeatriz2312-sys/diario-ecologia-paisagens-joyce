@@ -1,0 +1,31 @@
+---
+
+title: "Diário de Ecologia de Paisagens"
+subtitle: "BO-304 | UFPE | 2026.1"
+author: "Joyce Beatriz"
+
+---
+
+## Sobre este diário
+
+Este site é meu portfólio pessoal da disciplina **Ecologia de Paisagens** 
+(BO-304) da Universidade Federal de Pernambuco, ministrada pelo 
+Prof. Felipe Melo.
+
+Aqui você encontrará:
+
+- 📓 Anotações das aulas
+- 📊 Relatórios das análises em R
+- 🌿 Reflexões sobre Ecologia de Paisagens
+
+## Sobre mim
+
+Sou estudante de graduação no Departamento de Botânica do Centro 
+de Biociências — UFPE. Atualmente trabalho no laboratorio de ecologia vegetal aplicada LEVA, e sou orientada pelo prof. Marcelo Tabarelli.
+Em minha pesquisa de iniciação cientifica busco entender como as pertubações antropicas influenciam a qualidade fisiológica das sementes lenhosas da floresta seca de caatinga.
+---
+
+
+
+
+
