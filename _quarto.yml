@@ -3,15 +3,22 @@ project:
   output-dir: docs
 
 website:
-  title: "Diário de Ecologia de Paisagens – Joyce Beatriz"
+  title: "Diário de Ecologia de Paisagens"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - href: aula1.qmd
-        text: Aula 1
-      - href: about.qmd
+      - text: Início
+        href: index.qmd
+      - text: Aula 1
+        href: aula1.qmd
+      - text: Sobre mim
+        href: about.qmd
+    page-footer: 
+    center: "© 2026 • Joyce Beatriz • Ecologia de Paisagens"
 
 format:
   html:
     theme: cosmo
+    css: styles.css
+    toc: true
+    toc-location: right
+    

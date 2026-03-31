@@ -1,9 +1,7 @@
 ---
-
 title: "Diário de Ecologia de Paisagens"
 subtitle: "BO-304 | UFPE | 2026.1"
 author: "Joyce Beatriz"
-
 ---
 
 ## Sobre este diário
@@ -26,6 +24,4 @@ Em minha pesquisa de iniciação cientifica busco entender como as pertubações
 ---
 
 
-
-quarto render
 
