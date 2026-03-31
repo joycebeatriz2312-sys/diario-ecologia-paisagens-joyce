@@ -1,4 +1,4 @@
- Arquivos temporários do R e RStudio
+Arquivos temporários do R e RStudio
 .Rhistory
 .RData
 .Rproj.user/
@@ -11,3 +11,4 @@
 # Pastas de sistema
 .DS_Store
 Thumbs.db
+/.quarto/
