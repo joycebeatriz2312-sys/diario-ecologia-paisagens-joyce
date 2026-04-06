@@ -3,7 +3,7 @@ title: "Exercícios"
 format: html
 ---
 
-###Exercício 1: O Mosaico no Lance de Vista
+## Exercício 1: O Mosaico no Lance de Vista
 
 **Parte 1: Delimitação e Descrição (A Paisagem Humana)**
 
@@ -19,4 +19,41 @@ Grão: Casa como menor elemento
 Grão: Casa como menor elemento
 
 **Parte 3: A “Lente Biológica” (Escala de Percepção)**
+
+![Moita na percepção de um garfanhoto](images\exercicio3.jpeg)
+
+A moita de capim para o garfanhoto é percebida como um ambiente heterogêneo e complexo, onde na área observada tem vários habitats como folhas, troncos e outros animais, que vão ser importantes para a sobrevivência dele ou alimento e abrigo.
+
+
+**Questões para Discussão**
+
+
+
+1. **Ao aumentar o tamanho do grão (Parte 2), você perdeu informações que seriam vitais para a conservação de alguma espécie específica?**
+
+R- Sim, Ao aumentar o tamanho do grão, alguns detalhes da paisagem foram "perdidos", como exemplo a estrada que corta as áreas e age como um corredor. Essa "perda" do elemento, poderia nos enganar em achar que não existiria esse corredor e fazer imaginar que é somente uma área homogenea. 
+
+
+2. **Como a conectividade funcional mudou entre a sua visão humana e a visão do “gafanhoto”? Elementos que eram barreiras continuam sendo?**
+
+R-O que antes para mim era uma grande área de vegetação com corredores e manchas, para o garfanhoto não é algo que existe, visto que a área em que ele habita a paisagem é diferente da minha e os elementos presentes também.
+
+
+3. **Você consegue identificar algum distúrbio (natural ou antrópico) que foi o responsável por criar essa heterogeneidade que você desenhou?**
+
+R- Sim, há indícios de distúrbios, como a estrada de terra para o acesso de pessoas para as áreas, as áreas mais abertas sugerindo que há uso do solo para agricultura ou pastagem.
+
+
+
+
+## Exercício 2: Workbook de Ecologia de Paisagens
+
+## 🎬 Apresentação do Workbook
+
+{{< video https://youtu.be/ZWoAbrqc0hU >}}
+
+
+## Exercício 3: Workbook de Ecologia de Paisagens
+
+
 
