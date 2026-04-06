@@ -3,3 +3,20 @@ title: "Exercícios"
 format: html
 ---
 
+###Exercício 1: O Mosaico no Lance de Vista
+
+**Parte 1: Delimitação e Descrição (A Paisagem Humana)**
+
+![São josé dos cordeiros - PB](images\exercicio1.jpeg)
+Matriz: vegetação de caatinga
+Manchas: Açude, solo exposto (áreas de cultivo/pastagem), afloramento rochoso
+Corredores: estrada de terra
+Grão: Casa como menor elemento
+
+**Parte 2: Escala, Granulação e Transmutação**
+
+![Parte de cima quadrante escolhido; Parte de baixo mostrando a homogeinização do quadrante](images\exercicio2.jpeg)
+Grão: Casa como menor elemento
+
+**Parte 3: A “Lente Biológica” (Escala de Percepção)**
+
