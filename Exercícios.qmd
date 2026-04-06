@@ -115,7 +115,6 @@ SpatExtent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax)
 
 **5 Fluxo de trabalho integrado**
 
- A tibble: 6 × 5
   class    id   area isolamento perimetro_area
   <int> <int>  <dbl>      <dbl>          <dbl>
 1     1     1 0.0001       7             4    
