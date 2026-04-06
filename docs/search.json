@@ -89,5 +89,12 @@
     "title": "Exercícios",
     "section": "Exercício 3: Workbook de Ecologia de Paisagens",
     "text": "Exercício 3: Workbook de Ecologia de Paisagens"
+  },
+  {
+    "objectID": "Exercícios.html#exercício-3-pacotes-r-para-ecologia-de-paisagens",
+    "href": "Exercícios.html#exercício-3-pacotes-r-para-ecologia-de-paisagens",
+    "title": "Exercícios",
+    "section": "Exercício 3: Pacotes R para Ecologia de Paisagens",
+    "text": "Exercício 3: Pacotes R para Ecologia de Paisagens\n4 Conhecendo os pacotes principais\n4.1 terra — Dados Raster\n\n\n\nPaisagem simulada - Uso do solo\n\n\n4.1.1 Operações básicas com rasters\nclass : SpatRaster size : 50, 50, 1 (nrow, ncol, nlyr) resolution : 1, 1 (x, y) extent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax) coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) source(s) : memory categories : label name : label min value : Floresta max value : Água res(r) # Resolução espacial [1] 1 1 ext(r) # Extensão geográfica SpatExtent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax) ncell(r) # Número total de células [1] 2500 freq(r) # Frequência de cada classe (tabela de área) layer value count 1 1 Floresta 1257 2 1 Pastagem 490 3 1 Agricultura 482 4 1 Água 271\n4.2 sf — Dados Vetoriais\n\n\n\nParcelas sobre o mapa de uso do solo\n\n\n4.3 landscapemetrics — Métricas de Paisagem\n\n4.3.1 Calculando múltiplas métricas de uma vez\n4.3.2 Visualizando fragmentos\n\n\n4.4 tmap — Mapas Temáticos\n \n4.5 vegan — Ecologia de Comunidades\n\n5 Fluxo de trabalho integrado"
   }
 ]

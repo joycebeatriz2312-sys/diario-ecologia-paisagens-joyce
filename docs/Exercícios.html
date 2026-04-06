@@ -123,7 +123,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#exercício-1-o-mosaico-no-lance-de-vista" id="toc-exercício-1-o-mosaico-no-lance-de-vista" class="nav-link active" data-scroll-target="#exercício-1-o-mosaico-no-lance-de-vista">Exercício 1: O Mosaico no Lance de Vista</a></li>
   <li><a href="#exercício-2-workbook-de-ecologia-de-paisagens" id="toc-exercício-2-workbook-de-ecologia-de-paisagens" class="nav-link" data-scroll-target="#exercício-2-workbook-de-ecologia-de-paisagens">Exercício 2: Workbook de Ecologia de Paisagens</a></li>
   <li><a href="#apresentação-do-workbook" id="toc-apresentação-do-workbook" class="nav-link" data-scroll-target="#apresentação-do-workbook">🎬 Apresentação do Workbook</a></li>
-  <li><a href="#exercício-3-workbook-de-ecologia-de-paisagens" id="toc-exercício-3-workbook-de-ecologia-de-paisagens" class="nav-link" data-scroll-target="#exercício-3-workbook-de-ecologia-de-paisagens">Exercício 3: Workbook de Ecologia de Paisagens</a></li>
+  <li><a href="#exercício-3-pacotes-r-para-ecologia-de-paisagens" id="toc-exercício-3-pacotes-r-para-ecologia-de-paisagens" class="nav-link" data-scroll-target="#exercício-3-pacotes-r-para-ecologia-de-paisagens">Exercício 3: Pacotes R para Ecologia de Paisagens</a></li>
+  <li><a href="#a-tibble-6-5" id="toc-a-tibble-6-5" class="nav-link" data-scroll-target="#a-tibble-6-5">A tibble: 6 × 5</a></li>
   </ul>
 </nav>
     </div>
@@ -184,8 +185,45 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="apresentação-do-workbook">🎬 Apresentação do Workbook</h2>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/ZWoAbrqc0hU" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
-<section id="exercício-3-workbook-de-ecologia-de-paisagens" class="level2">
-<h2 class="anchored" data-anchor-id="exercício-3-workbook-de-ecologia-de-paisagens">Exercício 3: Workbook de Ecologia de Paisagens</h2>
+<section id="exercício-3-pacotes-r-para-ecologia-de-paisagens" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-3-pacotes-r-para-ecologia-de-paisagens">Exercício 3: Pacotes R para Ecologia de Paisagens</h2>
+<p><strong>4 Conhecendo os pacotes principais</strong></p>
+<p><strong>4.1 terra — Dados Raster</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images\e3i1.png" class="img-fluid figure-img"></p>
+<figcaption>Paisagem simulada - Uso do solo</figcaption>
+</figure>
+</div>
+<p><strong>4.1.1 Operações básicas com rasters</strong></p>
+<p>class : SpatRaster size : 50, 50, 1 (nrow, ncol, nlyr) resolution : 1, 1 (x, y) extent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax) coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) source(s) : memory categories : label name : label min value : Floresta max value : Água res(r) # Resolução espacial [1] 1 1 ext(r) # Extensão geográfica SpatExtent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax) ncell(r) # Número total de células [1] 2500 freq(r) # Frequência de cada classe (tabela de área) layer value count 1 1 Floresta 1257 2 1 Pastagem 490 3 1 Agricultura 482 4 1 Água 271</p>
+<p><strong>4.2 sf — Dados Vetoriais</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images\e3i2.png" class="img-fluid figure-img"></p>
+<figcaption>Parcelas sobre o mapa de uso do solo</figcaption>
+</figure>
+</div>
+<p><strong>4.3 landscapemetrics — Métricas de Paisagem</strong></p>
+<p><img src="images\e3i3.png" class="img-fluid"></p>
+<p><strong>4.3.1 Calculando múltiplas métricas de uma vez</strong></p>
+<p><strong>4.3.2 Visualizando fragmentos</strong></p>
+<p><img src="images\e3i4.png" class="img-fluid"></p>
+<p><img src="images\e3i5.png" class="img-fluid"></p>
+<p><strong>4.4 tmap — Mapas Temáticos</strong></p>
+<p><img src="images\e3i6.png" class="img-fluid"> <img src="images\e3i7.png" class="img-fluid"></p>
+<p><strong>4.5 vegan — Ecologia de Comunidades</strong></p>
+<p><img src="images\e3i8.png" class="img-fluid"></p>
+<p><strong>5 Fluxo de trabalho integrado</strong></p>
+</section>
+<section id="a-tibble-6-5" class="level1">
+<h1>A tibble: 6 × 5</h1>
+<p>class id area isolamento perimetro_area <int> <int> <dbl> <dbl> <dbl> 1 1 1 0.0001 7 4<br>
+2 1 2 0.0005 4 2.4<br>
+3 1 3 0.0072 2 0.833 4 1 4 0.0001 6.32 4<br>
+5 1 5 0.0001 5 4<br>
+6 1 6 0.008 2.24 0.85</dbl></dbl></dbl></int></int></p>
+<p><img src="images\e3i9.png" class="img-fluid"></p>
 
 
 </section>
