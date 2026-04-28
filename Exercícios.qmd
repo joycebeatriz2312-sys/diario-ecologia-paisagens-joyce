@@ -128,7 +128,12 @@ SpatExtent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax)
 
 ![](images\e3i9.png)
 
+---
+title: "Exercícios"
+---
+
 ## Exercício 4: Amostragem de Paisagens com Restrição de Borda — Murici-AL
+
 
 ** Contexto do exercício
 
@@ -145,10 +150,10 @@ Adicionalmente, usaremos o pacote landscapemetrics para calcular métricas de di
 -Calcular métricas de paisagem com landscapemetrics.
 -Produzir um painel de visualização das paisagens amostrais.
 
-![Visualização da área de sorteio](C:/Users/Joyce Borges/OneDrive/Documentos/diario_ecologia_joyceb/exercicios/Área de sorteio MURICI.png)
+![Visualização da área de sorteio](images\Área de sorteio MURICI.png)
 
 
-![visualização dos Pontos amostrais e buffers de 500m](C:/Users/Joyce Borges/OneDrive/Documentos/diario_ecologia_joyceb/exercicios/pontos amostrais e buffers de 500 MURICI.png)
+![visualização dos Pontos amostrais e buffers de 500m](images\pontos amostrais e buffers de 500 MURICI.png)
 
 **Análise com landscapemetrics:
 
@@ -157,7 +162,7 @@ Diversidade da paisagem – Índice de Shannon
 Densidade de borda da classe floresta 
 
 
-![Métricas de paisagem - MURICI](C:/Users/Joyce Borges/OneDrive/Documentos/diario_ecologia_joyceb/exercicios/metricas paisagem murici.png)
+![Métricas de paisagem - MURICI](images\metricas paisagem murici.png)
 ```
 id_buffer diversidade_shannon perc_floresta densidade_borda_m_ha
 1          1           0.7507504      78.22410             44.41351
@@ -180,7 +185,7 @@ id_buffer diversidade_shannon perc_floresta densidade_borda_m_ha
 **Interpretação dos resultados
 
 
-![Painel de amostragem - MURICI](C:/Users/Joyce Borges/OneDrive/Documentos/diario_ecologia_joyceb/exercicios/painel de amostragem MURICI.png)
+![Painel de amostragem - MURICI](images\painel de amostragem MURICI.png)
 
 
 
