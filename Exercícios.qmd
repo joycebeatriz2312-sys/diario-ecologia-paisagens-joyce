@@ -3,6 +3,63 @@ title: "Exercícios"
 format: html
 ---
 
+## Lista de Exercícios
+
+::: {.grid}
+
+::: {.g-col-4}
+###  Exercício 1  
+**O mosaico no lance de vista**
+
+Exploração inicial da paisagem e seus componentes.
+
+[ Ver exercício](aula1.qmd){.btn .btn-outline-primary}
+:::
+
+::: {.g-col-4}
+### Exercício 2  
+**Workbook de Ecologia de Paisagens**
+
+Organização e documentação das análises.
+
+[Ver exercício](exercicio2.qmd){.btn .btn-outline-primary}
+:::
+
+::: {.g-col-4}
+###  Exercício 3  
+**Pacotes R para Ecologia**
+
+Instalação e uso de ferramentas essenciais.
+
+[Ver exercício](exercicio3.qmd){.btn .btn-outline-primary}
+:::
+
+::: {.g-col-4}
+### Exercício 4  
+**Amostragem de Paisagens – Murici (AL)**
+
+Análise espacial com métricas de paisagem.
+
+[ Ver exercício](exercicios.qmd){.btn .btn-outline-primary}
+:::
+
+:::
+
+---
+
+## 🎥 Apresentação do Workbook
+
+Veja abaixo um vídeo apresentando a estrutura do site e os exercícios desenvolvidos:
+
+{{< video https://youtu.be/ZWoAbrqc0hU >}}
+
+---
+
+
+
+
+
+
 ## Exercício 1: O Mosaico no Lance de Vista
 
 **Parte 1: Delimitação e Descrição (A Paisagem Humana)**
