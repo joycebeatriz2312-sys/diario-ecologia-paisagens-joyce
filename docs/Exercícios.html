@@ -125,6 +125,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#apresentação-do-workbook" id="toc-apresentação-do-workbook" class="nav-link" data-scroll-target="#apresentação-do-workbook">🎬 Apresentação do Workbook</a></li>
   <li><a href="#exercício-3-pacotes-r-para-ecologia-de-paisagens" id="toc-exercício-3-pacotes-r-para-ecologia-de-paisagens" class="nav-link" data-scroll-target="#exercício-3-pacotes-r-para-ecologia-de-paisagens">Exercício 3: Pacotes R para Ecologia de Paisagens</a></li>
   <li><a href="#exercício-4-amostragem-de-paisagens-com-restrição-de-borda-murici-al" id="toc-exercício-4-amostragem-de-paisagens-com-restrição-de-borda-murici-al" class="nav-link" data-scroll-target="#exercício-4-amostragem-de-paisagens-com-restrição-de-borda-murici-al">Exercício 4: Amostragem de Paisagens com Restrição de Borda — Murici-AL</a></li>
+  <li><a href="#exercício-4.1---aplicando-em-outras-paisagens-cabaceiras-pb" id="toc-exercício-4.1---aplicando-em-outras-paisagens-cabaceiras-pb" class="nav-link" data-scroll-target="#exercício-4.1---aplicando-em-outras-paisagens-cabaceiras-pb">Exercício 4.1 - Aplicando em outras paisagens CABACEIRAS-PB</a></li>
   </ul>
 </nav>
     </div>
@@ -287,6 +288,63 @@ SpatExtent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax)
 <figcaption>Painel de amostragem - MURICI</figcaption>
 </figure>
 </div>
+</section>
+<section id="exercício-4.1---aplicando-em-outras-paisagens-cabaceiras-pb" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-4.1---aplicando-em-outras-paisagens-cabaceiras-pb">Exercício 4.1 - Aplicando em outras paisagens CABACEIRAS-PB</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/area sorteio CABACEIRAS.png" class="img-fluid figure-img"></p>
+<figcaption>área de sorteio CABACEIRAS PB</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pontos amostrais e buffers CABACEIRAS.png" class="img-fluid figure-img"></p>
+<figcaption>Pontos amostrais e buffers CABACEIRAS PB</figcaption>
+</figure>
+</div>
+<p><strong>Analise com landscapemetrics</strong></p>
+<pre><code>id_buffer diversidade_shannon perc_floresta densidade_borda_m_ha
+1         1           0.8940560     9.6153846            25.802457
+2         2           0.8111290     2.6737968            15.785032
+3         3           1.1411803     3.8054968            23.402228
+4         4           0.6002437     3.9487727            19.331190
+5         5           1.3292682     4.6038544            18.675012
+6         6           1.1492410     1.0582011            12.068451
+7         7           1.2258667     1.3888889             7.167349
+8         8           1.1166426     0.5291005             3.549544</code></pre>
+<p><strong>Interpretação dos resultados</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/painel de amostragem CABACEIRAS.png" class="img-fluid figure-img"></p>
+<figcaption>Painel de amostragem CABACEIRAS PB</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Algumas partes do script foram alteradas visando se encaixar ao mapa de cabaceiras</p>
+</div>
+</div>
+<p>O erro ocorreu porque o número de rótulos (labels) não correspondia ao número de feições (pontos) no objeto espacial.</p>
+<pre><code>geom_spatvector_text(aes(label = 1:15))</code></pre>
+<p>O código original usa 15 rótulos fixos, mas o número real de pontos era diferente (8), e o ggplot exige que o número de labels seja igual ao número de feições. Então corrigi, com auxilio de inteligencia artificial, criando um identificador (ID) nos pontos:</p>
+<pre><code>pontos_finais$ID &lt;- 1:nrow(pontos_finais)</code></pre>
+<p>Com isso, foi criado um ID automático e foi garantido que o número de labels é igual ao número de pontos. Depois foi corrigido o “geom_spatvector_text”, para que cada ponto receba seu próprio rótulo e que não tenha conflito de tamanho</p>
+<pre><code>geom_spatvector_text(
+  data = pontos_finais, 
+  aes(label = ID), 
+  color = "white", 
+  size = 3, 
+  vjust = -0.8
+)</code></pre>
 
 
 </section>

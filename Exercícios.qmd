@@ -188,10 +188,57 @@ id_buffer diversidade_shannon perc_floresta densidade_borda_m_ha
 
 ![Painel de amostragem - MURICI](images\painel de amostragem MURICI.png)
 
+## Exercício 4.1 - Aplicando em outras paisagens CABACEIRAS-PB
 
+![área de sorteio CABACEIRAS PB](images/area sorteio CABACEIRAS.png)
 
+![Pontos amostrais e buffers CABACEIRAS PB](images/pontos amostrais e buffers CABACEIRAS.png)
 
+**Analise com landscapemetrics**
 
+```
+id_buffer diversidade_shannon perc_floresta densidade_borda_m_ha
+1         1           0.8940560     9.6153846            25.802457
+2         2           0.8111290     2.6737968            15.785032
+3         3           1.1411803     3.8054968            23.402228
+4         4           0.6002437     3.9487727            19.331190
+5         5           1.3292682     4.6038544            18.675012
+6         6           1.1492410     1.0582011            12.068451
+7         7           1.2258667     1.3888889             7.167349
+8         8           1.1166426     0.5291005             3.549544
+```
+
+**Interpretação dos resultados**
+
+![Painel de amostragem CABACEIRAS PB](images/painel de amostragem CABACEIRAS.png)
+
+::: {.callout-warning}
+Algumas partes do script foram alteradas visando se encaixar ao mapa de cabaceiras
+:::
+
+O erro ocorreu porque o número de rótulos (labels) não correspondia ao número de feições (pontos) no objeto espacial. 
+
+```
+geom_spatvector_text(aes(label = 1:15))
+```
+
+O código original usa 15 rótulos fixos, mas o número real de pontos era diferente (8), e o ggplot exige que o número de labels seja igual ao número de feições. Então corrigi, com auxilio de inteligencia artificial, criando um identificador (ID) nos pontos:
+
+```
+pontos_finais$ID <- 1:nrow(pontos_finais)
+```
+
+Com isso, foi criado um ID automático e foi garantido que o número de labels é igual ao número de pontos. Depois foi corrigido o "geom_spatvector_text", para que cada ponto receba seu próprio rótulo e que não tenha conflito de tamanho
+
+```
+geom_spatvector_text(
+  data = pontos_finais, 
+  aes(label = ID), 
+  color = "white", 
+  size = 3, 
+  vjust = -0.8
+)
+```
 
 
 
