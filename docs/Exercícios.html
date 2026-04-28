@@ -196,7 +196,28 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p><strong>4.1.1 Operações básicas com rasters</strong></p>
-<p>class : SpatRaster size : 50, 50, 1 (nrow, ncol, nlyr) resolution : 1, 1 (x, y) extent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax) coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) source(s) : memory categories : label name : label min value : Floresta max value : Água res(r) # Resolução espacial [1] 1 1 ext(r) # Extensão geográfica SpatExtent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax) ncell(r) # Número total de células [1] 2500 freq(r) # Frequência de cada classe (tabela de área) layer value count 1 1 Floresta 1257 2 1 Pastagem 490 3 1 Agricultura 482 4 1 Água 271</p>
+<pre><code>class       : SpatRaster 
+size        : 50, 50, 1  (nrow, ncol, nlyr)
+resolution  : 1, 1  (x, y)
+extent      : 0, 50, 0, 50  (xmin, xmax, ymin, ymax)
+coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
+source(s)   : memory
+categories  : label 
+name        :    label 
+min value   : Floresta 
+max value   :     Água 
+ res(r)            # Resolução espacial
+[1] 1 1
+ ext(r)            # Extensão geográfica
+SpatExtent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax)
+ ncell(r)          # Número total de células
+[1] 2500
+ freq(r)           # Frequência de cada classe (tabela de área)
+  layer       value count
+1     1    Floresta  1257
+2     1    Pastagem   490
+3     1 Agricultura   482
+4     1        Água   271</code></pre>
 <p><strong>4.2 sf — Dados Vetoriais</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -224,10 +245,10 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="exercício-4-amostragem-de-paisagens-com-restrição-de-borda-murici-al" class="level2">
 <h2 class="anchored" data-anchor-id="exercício-4-amostragem-de-paisagens-com-restrição-de-borda-murici-al">Exercício 4: Amostragem de Paisagens com Restrição de Borda — Murici-AL</h2>
-<p>** Contexto do exercício</p>
+<p><strong>Contexto do exercício</strong></p>
 <p>Neste exercício você trabalhará com um mapa de uso e cobertura da terra do município de Murici (AL), obtido por classificação de imagens de satélite. O objetivo é selecionar 15 pontos amostrais no interior de remanescentes florestais que estejam a pelo menos 2 km da borda do mapa (para evitar efeitos de borda não controlados). Em cada ponto será extraído um buffer circular de 500 m de raio e calculada a composição percentual de cada classe de uso do solo.</p>
 <p>Adicionalmente, usaremos o pacote landscapemetrics para calcular métricas de diversidade (Shannon), proporção de floresta e densidade de borda para cada uma das 15 paisagens amostrais.</p>
-<p>**Objetivos específicos</p>
+<p><strong>Objetivos específicos</strong></p>
 <p>-Compreender a importância da projeção cartográfica para análises métricas. -Aplicar buffer negativo para restrição de borda de mapa. -Realizar amostragem aleatória com distância mínima entre pontos. -Extrair e quantificar a composição da paisagem em buffers circulares. -Calcular métricas de paisagem com landscapemetrics. -Produzir um painel de visualização das paisagens amostrais.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -241,14 +262,8 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>visualização dos Pontos amostrais e buffers de 500m</figcaption>
 </figure>
 </div>
-<p>**Análise com landscapemetrics:</p>
+<p><strong>Análise com landscapemetrics:</strong></p>
 <p>Diversidade da paisagem – Índice de Shannon % de cobertura florestal – Proporção da classe “Formação Florestal” Densidade de borda da classe floresta</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images\metricas paisagem murici.png" class="img-fluid figure-img"></p>
-<figcaption>Métricas de paisagem - MURICI</figcaption>
-</figure>
-</div>
 <pre><code>id_buffer diversidade_shannon perc_floresta densidade_borda_m_ha
 1          1           0.7507504      78.22410             44.41351
 2          2           0.7551841      75.62028             53.66340
@@ -265,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
 13        13           0.6093134      83.75527             24.81909
 14        14           0.0000000     100.00000              0.00000
 15        15           1.0722640      23.58591             53.09069</code></pre>
-<p>**Interpretação dos resultados</p>
+<p><strong>Interpretação dos resultados</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images\painel de amostragem MURICI.png" class="img-fluid figure-img"></p>
