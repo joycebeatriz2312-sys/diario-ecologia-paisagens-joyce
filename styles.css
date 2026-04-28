@@ -27,3 +27,16 @@ a:hover {
 p {
   line-height: 1.7;
 }
+
+/* Cards de exercícios */
+.grid > div {
+  background-color: #f8f4fb;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+
+.grid > div:hover {
+  transform: scale(1.03);
+}

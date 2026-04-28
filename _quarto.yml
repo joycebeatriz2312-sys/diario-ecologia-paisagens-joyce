@@ -15,7 +15,7 @@ website:
       - text: Exercícios
         href: Exercícios.qmd
     page-footer: 
-    center: "© 2026 • Joyce Beatriz • Ecologia de Paisagens"
+     center: "© 2026 • Joyce Beatriz • Ecologia de Paisagens"
 
 format:
   html:
