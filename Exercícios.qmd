@@ -113,6 +113,7 @@ SpatExtent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax)
 
 ![](images\e3i8.png)
 
+
 **5 Fluxo de trabalho integrado**
 
   class    id   area isolamento perimetro_area
@@ -124,5 +125,67 @@ SpatExtent : 0, 50, 0, 50 (xmin, xmax, ymin, ymax)
 5     1     5 0.0001       5             4    
 6     1     6 0.008        2.24          0.85 
 
+
 ![](images\e3i9.png)
+
+## Exercício 4: Amostragem de Paisagens com Restrição de Borda — Murici-AL
+
+** Contexto do exercício
+
+Neste exercício você trabalhará com um mapa de uso e cobertura da terra do município de Murici (AL), obtido por classificação de imagens de satélite. O objetivo é selecionar 15 pontos amostrais no interior de remanescentes florestais que estejam a pelo menos 2 km da borda do mapa (para evitar efeitos de borda não controlados). Em cada ponto será extraído um buffer circular de 500 m de raio e calculada a composição percentual de cada classe de uso do solo.
+
+Adicionalmente, usaremos o pacote landscapemetrics para calcular métricas de diversidade (Shannon), proporção de floresta e densidade de borda para cada uma das 15 paisagens amostrais.
+
+**Objetivos específicos
+
+-Compreender a importância da projeção cartográfica para análises métricas.
+-Aplicar buffer negativo para restrição de borda de mapa.
+-Realizar amostragem aleatória com distância mínima entre pontos.
+-Extrair e quantificar a composição da paisagem em buffers circulares.
+-Calcular métricas de paisagem com landscapemetrics.
+-Produzir um painel de visualização das paisagens amostrais.
+
+![Visualização da área de sorteio](C:/Users/Joyce Borges/OneDrive/Documentos/diario_ecologia_joyceb/exercicios/Área de sorteio MURICI.png)
+
+
+![visualização dos Pontos amostrais e buffers de 500m](C:/Users/Joyce Borges/OneDrive/Documentos/diario_ecologia_joyceb/exercicios/pontos amostrais e buffers de 500 MURICI.png)
+
+**Análise com landscapemetrics:
+
+Diversidade da paisagem – Índice de Shannon 
+% de cobertura florestal – Proporção da classe “Formação Florestal” 
+Densidade de borda da classe floresta 
+
+
+![Métricas de paisagem - MURICI](C:/Users/Joyce Borges/OneDrive/Documentos/diario_ecologia_joyceb/exercicios/metricas paisagem murici.png)
+```
+id_buffer diversidade_shannon perc_floresta densidade_borda_m_ha
+1          1           0.7507504      78.22410             44.41351
+2          2           0.7551841      75.62028             53.66340
+3          3           1.2318169      49.41922             53.94980
+4          4           0.8906418      71.73679             33.35833
+5          5           1.0747283      57.00326             63.86672
+6          6           0.0000000     100.00000              0.00000
+7          7           1.3336246      31.62939             74.45502
+8          8           0.8789672      70.95745             25.38790
+9          9           1.3141271      23.73247             48.22454
+10        10           0.7153538      69.32907             24.34106
+11        11           1.0003162      44.07684             58.11278
+12        12           1.2808703      13.84452             44.74460
+13        13           0.6093134      83.75527             24.81909
+14        14           0.0000000     100.00000              0.00000
+15        15           1.0722640      23.58591             53.09069
+```
+
+**Interpretação dos resultados
+
+
+![Painel de amostragem - MURICI](C:/Users/Joyce Borges/OneDrive/Documentos/diario_ecologia_joyceb/exercicios/painel de amostragem MURICI.png)
+
+
+
+
+
+
+
 
