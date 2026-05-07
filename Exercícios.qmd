@@ -277,39 +277,95 @@ Por fim, o tratamento e a estruturação tabular dos resultados foram organizado
 
 A análise do mapa de uso e cobertura do solo nos mostra que a paisagem é dominada pela classe de Formação Savânica e por áreas de uso humano representadas principalmente por Pastagem e Mosaico de Usos. As Formações Florestais apresentam uma distribuição bastante restrita e fragmentada, formando pequenas manchas isoladas dentro da matriz. Já outras classes, como Corpos d'Água e Áreas Urbanizadas, ocorrem em pequenas proporções e de forma pontual pelo território.
 
+![Mapa de uso e cobertura do solo de Cabaceiras PB](images/mapa_uso_cabaceiras.png)
+
 Após as analises foram sorteados 15 pontos ao longo do território de cabaceiras visando analisar qual desses pontos de floresta melhor serviriam para a implementação da unidade de conservação. A distribuição dos pontos acompanhou a ocorrência natural da formação florestal e se concentraram no centro-sul e nordeste do mapa. Para evitar erros, os pontos que cairam muito na borda foram ignorados, para evitar erros e problemas causados por efeitos de borda não controlados fora da área mapeada. A única exceção foi a paisagem referente ao ponto 5 na parte sul, que foi mantida na amostragem por apresentar potencial estratégico para a futura criação da unidade de conservação.
 
+![Pontos de floresta sorteados](images/pontos_cabaceiras.png)
 
-**1.1	Quantificação da Estrutura (Métricas de Paisagem)**
+**1.1	Quantificação da Estrutura (Métricas de paisagem e mancha)**
 
-A análise das métricas espaciais extraídas para os 15 buffers mostrou variações estruturais significativas entre as amostras. Em termos de representatividade da formação florestal, o Buffer 5 se destaca como o melhor cenário, pois possui maior proporção de cobertura florestal (18,26%) e também demonstra alta heterogeneidade na paisagem (Índice de Shannon de 1,34). Porém, ela possui a maior densidade de borda do conjunto (48,08 m/ha), o que pode nos dizer que mesmo tendo uma boa quantidade de floresta, a mancha tem formatos irregulares ou pode estar fragmentada na matriz. O Buffer 4 também demonstrou resultados positivos, sendo a segunda área com maior percentual florestal (11,76%), apresentando um índice de shannon de 0,98 e densidade de borda de 36,20, números menores que o buffer 5, mas que ainda a colocam como possível área.
+A análise das métricas espaciais para os 15 buffers mostrou variações significativas entre os buffers. Em termos de representatividade da formação florestal, o Buffer 5 se destaca como o melhor cenário, pois possui maior proporção de cobertura florestal (18,26%) e também demonstra alta heterogeneidade na paisagem (Índice de Shannon de 1,34). Porém, ela possui a maior densidade de borda do conjunto (48,08 m/ha), o que pode nos dizer que mesmo tendo uma boa quantidade de floresta, a mancha tem formatos irregulares ou pode estar fragmentada na matriz. O Buffer 4 também demonstrou resultados positivos, sendo a segunda área com maior percentual florestal (11,76%), apresentando um índice de shannon de 0,98 e densidade de borda de 36,20, números menores que o buffer 5, mas que ainda a colocam como possível área.
 Em contrapartida, os piores cenários foram vistos nos Buffers 3 e 13, ambos possuindo cerca de 0,5% de floresta em sua composição, os tornando inviáveis para áreas prioritárias. Em relação à composição da paisagem, o Buffer 2 foi o que apresentou a maior diversidade de classes (Índice de Shannon de 1,44), indicando uma paisagem bem heterogênea. Já os Buffers 15 e 10 obtiveram os menores valores de diversidade (Shannon de 0,08 e 0,17, respectivamente). 
+
+```
+ 
+> print(metricas_paisagem)
+   id_buffer diversidade_shannon perc_floresta densidade_borda_m_ha
+1          1          1.23057611     3.6286019            22.206778
+2          2          1.43889928     6.7235859            37.608253
+3          3          1.28042224     0.5393743             3.620376
+4          4          0.98333430    11.7583603            36.203763
+5          5          1.33698655    18.2584270            48.078801
+6          6          1.32890281     3.8379531            23.614271
+7          7          1.25104207     1.3874066             7.163477
+8          8          0.79134328     2.6539278            15.675999
+9          9          0.62975187     4.0000000            19.592302
+10        10          0.17227395     1.0245902            11.003570
+11        11          1.12990123     2.1668472             7.272132
+12        12          0.75669105     2.1164021             6.510931
+13        13          1.11726105     0.5319149             3.570307
+14        14          1.13870407     1.0660981            12.164928
+15        15          0.08304324     1.6245487            10.904260
+
+```
 
 
 A avaliação no nível da mancha nos deu um bom detalhamento sobre a qualidade e a viabilidade dos fragmentos florestais presentes. O Buffer 4 registou a maior área média de mancha (4,84 ha) e a maior core area (2,18 ha). O Buffer 5 também tem potencial, pois além de apresentar uma boa core area (1,19 ha), as suas manchas possuem índices de forma e dimensão fractal mais próximos de 1 (1,43 e 1,06, respetivamente).
 Já os Buffers 3, 10, 13, 14 e 15 configuram os piores cenários estruturais. Nestas áreas, as manchas florestais possuem médias inferiores a 0,5 ha e apresentam um valor de core area igual a zero. O Buffer 10 demonstrou ser altamente isolado, apresentando a maior distância para o vizinho mais próximo (enn de 364 m). Diversos buffers (3, 7, 8, 9, 11, 12 e 13) são uma única mancha florestal isolada dentro da zona de amortecimento.
 
+```
+ plot_id  area   core   enn  frac perim shape
+     
+ 1       1 1.51  0.0888 107.   1.12  924.  1.83
+ 2       2 1.40  0.244  143.   1.10  790.  1.68
+ 3       3 0.444 0      NaN    1.03  298.  1.12
+ 4       4 4.84  2.18   246.   1.11 1520.  1.81
+ 5       5 2.31  1.19   115.   1.06  751.  1.43
+ 6       6 1.60  0.178   89.4  1.14  983.  1.94
+ 7       7 1.15  0.178  NaN    1.07  596.  1.39
+ 8       8 2.22  0.0888 NaN    1.16 1311.  2.20
+ 9       9 3.28  0.977  NaN    1.15 1609.  2.22
+10      10 0.222 0      364.   1.07  268.  1.38
+11      11 1.78  0.533  NaN    1.02  596.  1.12
+12      12 1.07  0.0888 NaN    1.08  596.  1.44
+13      13 0.444 0      NaN    1.03  298.  1.12
+14      14 0.444 0      233.   1.14  507.  1.86
+15      15 0.400 0      215.   1.04  298.  1.19
+```
+
+
 
 A representação cartográfica dos 15 recortes circulares (Painel de Amostragem) corrobora visualmente com os dados quantitativos obtidos pelas métricas. 
+
+![Painel de amostragem das áreas sorteadas](images/painel_cabaceiras.png)
+
+::: {.callout-warning}
+Algumas imagens estão cortadas pois elas se localizam na borda do mapa
+:::
+
+
 A Paisagem 4 possui uma mancha florestal contínua e mais centralizada, imersa em grande parte em uma matriz de formação savânica e de mosaico de usos. Justificando o valor de core area, o que pode indicar um fragmento mais protegido das pressões externas.
 Já a Paisagem 5 se destaca por uma extensa faixa florestal localizada na borda do limite do mapa e diretamente contígua a um corpo d'água. Isto lhe da confere um valor ecológico, pois pode sugerir a presença de uma mata ciliar ou uma vegetação associada a recursos hídricos. Porem, é possível ver que essa mesma floresta está cercada por área de pastagem, o que explicaria o valor da densidade de borda, indicando uma área de alta pressão antrópica e vulnerabilidade ao efeito de borda.
 
+![Detalhe da paisagem 4](images/paisagem4.png)
+![Detalhe da paisagem 5](images/paisagem5.png)
 
 **4. Interpretação e Proposta de Manejo**
 
 **•	Quais pontos-paisagem apresentam a melhor integridade ecológica?**
 
- Os Buffers 4 e 5.
+Os Buffers 4 e 5.
 
 **•	Existem áreas que funcionam como trampolins ecológicos (stepping stones) ou que facilitam a conectividade funcional?**
 
 
- Sim. A análise da métrica de isolamento mostra que áreas como os Buffers 6 (89,4 m), 1 (107 m) e 5 (115 m) possuem manchas florestais relativamente próximas umas das outras. Esses fragmentos menores podem então atuar como stepping stones dentro da matriz dominante de formação savânica e pastagem. Eles podem ser fundamentais para facilitar a conectividade funcional, pois acaba reduzindo a distância de voo ou deslocamento da fauna, o que permite fluxo gênico e dispersão de sementes entre manchas maiores que estariam isoladas.
+Sim. A análise da métrica de isolamento mostra que áreas como os Buffers 6 (89,4 m), 1 (107 m) e 5 (115 m) possuem manchas florestais relativamente próximas umas das outras. Esses fragmentos menores podem então atuar como stepping stones dentro da matriz dominante de formação savânica e pastagem. Eles podem ser fundamentais para facilitar a conectividade funcional, pois acaba reduzindo a distância de voo ou deslocamento da fauna, o que permite fluxo gênico e dispersão de sementes entre manchas maiores que estariam isoladas.
 
 **•	Onde o governo deve instalar a nova UC? Justifique com base em conceitos como o limiar crítico de habitat (ex: regra dos 30%) e a viabilidade populacional das manchas.**
 
 
- O governo deve instalar a nova UC na área correspondente ao Buffer 5.
+O governo deve instalar a nova UC na área correspondente ao Buffer 5.
 Nenhuma das paisagens amostradas atinge o valor mínimo ideal do limiar crítico ( Buffer 5 é o que chega mais perto, com 18,26%). Por estar abaixo do limiar crítico, a escolha do Buffer 5 é fundamental, pois ele possui a maior base florestal para iniciar um processo de recuperação e já conta com uma área central viável (1,19 ha) para sustentar populações remanescentes, além de proteger um corpo d'água.
 Diante desse cenário de fragmentação, a criação da UC não deve seguir um modelo de proteção estrita (fechada/cercada). A recomendação é a criação de uma Unidade de Conservação de Uso Sustentável, integrando a comunidade local. Dessa forma, é possível utilizar técnicas de agricultura sustentável (como sistemas agroflorestais) integradas à restauração ecológica das pastagens de entorno. Isso permitirá que, a médio e longo prazo, a cobertura florestal local se expanda, ultrapassando o limiar de 30% e garantindo a resiliência ecológica da paisagem sem excluir as pessoas que ali vivem.
 
