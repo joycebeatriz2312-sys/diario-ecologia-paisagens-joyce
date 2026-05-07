@@ -240,5 +240,173 @@ geom_spatvector_text(
 )
 ```
 
+## Exercício 5: Exercício Prático: Consultoria Técnica para Criação de Unidades de Conservação (UCs)
+
+
+•	O objetivo da consultoria é fundamentar tecnicamente a criação de novas Unidades de Conservação, identificando áreas que possuam características espaciais favoráveis à manutenção da biodiversidade e à integridade dos processos ecológicos.
+Objetivos do Exercício
+
+1.	Quantificar a estrutura da paisagem utilizando o modelo Mancha-Corredor-Matriz.
+2.	Analisar a composição e a configuração espacial de fragmentos florestais.
+3.	Propor áreas prioritárias para conservação com base em métricas de paisagem.
+
+
+**Introdução**
+
+A área de escolha para a realização da instalação da unidade de conservação consiste no município de Cabaceiras localizado no estado da Paraíba e inserido na Mesorregião da Borborema. A região possui uma área aproximada de 400,22 km² e população estimada em 5.336 habitantes. O município está nos domínios da bacia hidrográfica do Rio Paraíba e é drenado pelos rios Taperoá, Paraíba e Boa Vista. A vegetação predominante é a Caatinga arbustiva, típica das regiões semiáridas do Nordeste brasileiro, mas ainda apresentando manchas de floresta densa. Diante disso, Cabaceiras pode funcionar como uma área representativa da Caatinga e está inserida na região do Cariri Paraibano.
+O Cariri Paraibano é uma sub-região da Caatinga localizada no estado da Paraíba, no Nordeste do Brasil. Ela possui uma área de 11.233,5 km² e é composta por 29 municípios. Até o final do século XVIII, o Cariri Paraibano era composto por paisagens de bosques e florestas ribeirinhas, que foram substituídas por áreas de pecuária e plantio de algodão. Contudo, as atividades agrícolas de algodão declinaram a partir dos anos 1950, deixando áreas severamente degradadas. Atualmente, a região é um mosaico de uso do solo e degradação da vegetação originária, com algumas áreas florestais ainda preservadas (Souza, 2009, 2016).
+A Caatinga é considerada a maior floresta sazonalmente seca do mundo, abriga inúmeras espécies endêmicas e possui grande relevância ecológica, social e cultural. Apesar disso, a conservação desse bioma recebe pouca prioridade, refletido na baixa quantidade de áreas protegidas existentes. Atualmente, apenas cerca de 8,9% da área da Caatinga encontra-se protegida por Unidades de Conservação (UCs), sendo a maior parte representada por Áreas de Proteção Ambiental (APAs), categoria considerada menos restritiva. Esse cenário evidencia a necessidade de criação e ampliação de novas Unidades de Conservação na Caatinga, especialmente em regiões suscetíveis à degradação ambiental, como o Cariri Paraibano.
+
+
+**Descrição da metodologia de amostragem**
+
+**Procedimentos Técnicos**
+
+**1. Obtenção e Preparo dos Dados**
+
+Foi selecionado o município brasileiro (Cabaceiras – PB) e foi realizado o download do mapa de uso e cobertura da terra mais recente da plataforma MapBiomas (2024). Foi utilizado o programa Rstudio para a realização dos processamewntos dos dados raster . 
+
+**2. Delineamento Amostral: Pontos-Paisagem e Quantificação da Estrutura (Métricas de Paisagem)**
+
+O processamento dos dados espaciais foi realizado no Rstudio. De inicio foi garantido que o sistema de coordenadas estivesse projetado corretamente para a região de Cabaceiras (fuso UTM 24 Sul, EPSG: 31984). Em seguida, foi feito um sorteio de pontos amostrais de forma aleatória, restritos espacialmente à classe de uso definida como "Floresta".
+Ao redor de cada ponto sorteado, foi estabelecido um buffer de 500 metros de raio. Porem, para assegurar a independência das amostras, foi definida uma distância mínima de 1.000 metros entre os pontos, para garantir que os buffers não se tocassem ou se sobrepusessem. A organização dos mapas, o ajuste de coordenadas, o recorte da área de estudo e a criação das zonas de amortecimento, foi feita com o auxílio do pacote terra.
+Já para compreender a saúde ecológica dessas manchas florestais e conseguir quantificar a estrutura espacial, foram calculadas métricas de ecologia de paisagem utilizando o pacote landscapemetrics. As medidas foram realizadas nos níveis de mancha, classe e paisagem, extraindo dados como área, perímetro, área central, índice de forma, isolamento, percentual de floresta, densidade da borda e a diversidade de Shannon dentro de cada buffer.
+Por fim, o tratamento e a estruturação tabular dos resultados foram organizados com o pacote tidyverse, enquanto a elaboração dos mapas e das representações visuais foi feita utilizando o pacote ggplot2 com a extensão tidyterra.
+
+**Resultados**
+
+A análise do mapa de uso e cobertura do solo nos mostra que a paisagem é dominada pela classe de Formação Savânica e por áreas de uso humano representadas principalmente por Pastagem e Mosaico de Usos. As Formações Florestais apresentam uma distribuição bastante restrita e fragmentada, formando pequenas manchas isoladas dentro da matriz. Já outras classes, como Corpos d'Água e Áreas Urbanizadas, ocorrem em pequenas proporções e de forma pontual pelo território.
+
+Após as analises foram sorteados 15 pontos ao longo do território de cabaceiras visando analisar qual desses pontos de floresta melhor serviriam para a implementação da unidade de conservação. A distribuição dos pontos acompanhou a ocorrência natural da formação florestal e se concentraram no centro-sul e nordeste do mapa. Para evitar erros, os pontos que cairam muito na borda foram ignorados, para evitar erros e problemas causados por efeitos de borda não controlados fora da área mapeada. A única exceção foi a paisagem referente ao ponto 5 na parte sul, que foi mantida na amostragem por apresentar potencial estratégico para a futura criação da unidade de conservação.
+
+
+**1.1	Quantificação da Estrutura (Métricas de Paisagem)**
+
+A análise das métricas espaciais extraídas para os 15 buffers mostrou variações estruturais significativas entre as amostras. Em termos de representatividade da formação florestal, o Buffer 5 se destaca como o melhor cenário, pois possui maior proporção de cobertura florestal (18,26%) e também demonstra alta heterogeneidade na paisagem (Índice de Shannon de 1,34). Porém, ela possui a maior densidade de borda do conjunto (48,08 m/ha), o que pode nos dizer que mesmo tendo uma boa quantidade de floresta, a mancha tem formatos irregulares ou pode estar fragmentada na matriz. O Buffer 4 também demonstrou resultados positivos, sendo a segunda área com maior percentual florestal (11,76%), apresentando um índice de shannon de 0,98 e densidade de borda de 36,20, números menores que o buffer 5, mas que ainda a colocam como possível área.
+Em contrapartida, os piores cenários foram vistos nos Buffers 3 e 13, ambos possuindo cerca de 0,5% de floresta em sua composição, os tornando inviáveis para áreas prioritárias. Em relação à composição da paisagem, o Buffer 2 foi o que apresentou a maior diversidade de classes (Índice de Shannon de 1,44), indicando uma paisagem bem heterogênea. Já os Buffers 15 e 10 obtiveram os menores valores de diversidade (Shannon de 0,08 e 0,17, respectivamente). 
+
+
+A avaliação no nível da mancha nos deu um bom detalhamento sobre a qualidade e a viabilidade dos fragmentos florestais presentes. O Buffer 4 registou a maior área média de mancha (4,84 ha) e a maior core area (2,18 ha). O Buffer 5 também tem potencial, pois além de apresentar uma boa core area (1,19 ha), as suas manchas possuem índices de forma e dimensão fractal mais próximos de 1 (1,43 e 1,06, respetivamente).
+Já os Buffers 3, 10, 13, 14 e 15 configuram os piores cenários estruturais. Nestas áreas, as manchas florestais possuem médias inferiores a 0,5 ha e apresentam um valor de core area igual a zero. O Buffer 10 demonstrou ser altamente isolado, apresentando a maior distância para o vizinho mais próximo (enn de 364 m). Diversos buffers (3, 7, 8, 9, 11, 12 e 13) são uma única mancha florestal isolada dentro da zona de amortecimento.
+
+
+A representação cartográfica dos 15 recortes circulares (Painel de Amostragem) corrobora visualmente com os dados quantitativos obtidos pelas métricas. 
+A Paisagem 4 possui uma mancha florestal contínua e mais centralizada, imersa em grande parte em uma matriz de formação savânica e de mosaico de usos. Justificando o valor de core area, o que pode indicar um fragmento mais protegido das pressões externas.
+Já a Paisagem 5 se destaca por uma extensa faixa florestal localizada na borda do limite do mapa e diretamente contígua a um corpo d'água. Isto lhe da confere um valor ecológico, pois pode sugerir a presença de uma mata ciliar ou uma vegetação associada a recursos hídricos. Porem, é possível ver que essa mesma floresta está cercada por área de pastagem, o que explicaria o valor da densidade de borda, indicando uma área de alta pressão antrópica e vulnerabilidade ao efeito de borda.
+
+
+**4. Interpretação e Proposta de Manejo**
+
+**•	Quais pontos-paisagem apresentam a melhor integridade ecológica?**
+
+ Os Buffers 4 e 5.
+
+**•	Existem áreas que funcionam como trampolins ecológicos (stepping stones) ou que facilitam a conectividade funcional?**
+
+
+ Sim. A análise da métrica de isolamento mostra que áreas como os Buffers 6 (89,4 m), 1 (107 m) e 5 (115 m) possuem manchas florestais relativamente próximas umas das outras. Esses fragmentos menores podem então atuar como stepping stones dentro da matriz dominante de formação savânica e pastagem. Eles podem ser fundamentais para facilitar a conectividade funcional, pois acaba reduzindo a distância de voo ou deslocamento da fauna, o que permite fluxo gênico e dispersão de sementes entre manchas maiores que estariam isoladas.
+
+**•	Onde o governo deve instalar a nova UC? Justifique com base em conceitos como o limiar crítico de habitat (ex: regra dos 30%) e a viabilidade populacional das manchas.**
+
+
+ O governo deve instalar a nova UC na área correspondente ao Buffer 5.
+Nenhuma das paisagens amostradas atinge o valor mínimo ideal do limiar crítico ( Buffer 5 é o que chega mais perto, com 18,26%). Por estar abaixo do limiar crítico, a escolha do Buffer 5 é fundamental, pois ele possui a maior base florestal para iniciar um processo de recuperação e já conta com uma área central viável (1,19 ha) para sustentar populações remanescentes, além de proteger um corpo d'água.
+Diante desse cenário de fragmentação, a criação da UC não deve seguir um modelo de proteção estrita (fechada/cercada). A recomendação é a criação de uma Unidade de Conservação de Uso Sustentável, integrando a comunidade local. Dessa forma, é possível utilizar técnicas de agricultura sustentável (como sistemas agroflorestais) integradas à restauração ecológica das pastagens de entorno. Isso permitirá que, a médio e longo prazo, a cobertura florestal local se expanda, ultrapassando o limiar de 30% e garantindo a resiliência ecológica da paisagem sem excluir as pessoas que ali vivem.
+
+**Parecer Técnico Resumido: Indicação clara de qual área deve ser protegida e por quais razões ecológicas espaciais.**
+
+
+A área escolhida foi a 5, pois a mesma se destaca por ter a maior proporção de cobertura florestal entre todas as áreas amostradas (18,26%) e por manter uma core area viável (1,19 ha) para o refúgio da biodiversidade. O fator ecológico de maior relevância é a associação desse remanescente florestal com um corpo d'água, sugerindo a possível presença de mata ciliar. A proteção dessa área vai poder garantir a conservação da flora e fauna nativa e também a manutenção dos recursos hídricos, um serviço ecossistêmico crítico na região da Caatinga.
+Embora as métricas apontem uma elevada densidade de borda (48,08 m/ha) devido a pressão das áreas de pastagem e do mosaico de usos do entorno, essa vulnerabilidade justifica necessidade de intervenção. 
+Porém, ao invés de adotar um modelo de conservação que visa o isolamento da área, a heterogeneidade e a ocupação antrópica dessa paisagem oferecem o cenário ideal para a criação de uma Unidade de Conservação de Uso Sustentável. Tendo em mente que presença de moradores e atividades agrícolas não deve ser vista como um impeditivo, mas como uma oportunidade para aplicar métodos de integração sustentável, como sistemas agroflorestais e técnicas de agricultura aliadas à restauração ecológica das bordas da floresta.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
