@@ -377,6 +377,339 @@ Embora as métricas apontem uma elevada densidade de borda (48,08 m/ha) devido a
 Porém, ao invés de adotar um modelo de conservação que visa o isolamento da área, a heterogeneidade e a ocupação antrópica dessa paisagem oferecem o cenário ideal para a criação de uma Unidade de Conservação de Uso Sustentável. Tendo em mente que presença de moradores e atividades agrícolas não deve ser vista como um impeditivo, mas como uma oportunidade para aplicar métodos de integração sustentável, como sistemas agroflorestais e técnicas de agricultura aliadas à restauração ecológica das bordas da floresta.
 
 
+## Por dentro do Exercicio 5: script e comentários
+
+**TENTATIVA CABACEIRAS -------------------------------------**
+::: {.callout-note collapse="true"}
+```{r}
+library(terra)
+library(tidyverse)
+library(tidyterra)
+library(landscapemetrics)
+
+
+r_cabaceiras <- rast("2024_cabaceiras.tif")
+
+r_utm <- project(r_cabaceiras, "EPSG:31984", method = "near")
+```
+```{r}
+#Projeção e legenda
+
+legenda <- data.frame(
+  id = c(3, 4, 11, 15, 20, 21, 24, 25, 33),
+  Categoria = c("Formação Florestal", "Formação Savânica", "Campo Alagado",
+                "Pastagem", "Cana", "Mosaico de Usos", "Área Urbanizada",
+                "Outras Áreas não Vegetadas", "Corpo d'Água"),
+  Cores = c("#006400", "#7cfc00", "#00ffff", "#ffff00", "#ff4500",
+            "#f4a460", "#ff0000", "#d3d3d3", "#0000ff")
+)
+
+levels(r_utm) <- legenda[,1:2]
+
+```
+```{r}
+# definindo a área de sorteio (SEM restrição de borda)
+
+vetor_total <- as.polygons(r_utm, dissolve = TRUE)
+
+# limite do município
+municipio_limite <- aggregate(vetor_total)
+
+# selecionar apenas floresta
+floresta <- vetor_total[vetor_total$Categoria == "Formação Florestal", ]
+
+# área de sorteio = floresta inteira dentro do município
+area_sorteio <- mask(floresta, municipio_limite)
+
+# um único objeto
+if (is.list(area_sorteio)) {
+  area_sorteio <- do.call(rbind, area_sorteio)
+}
+
+# checando...
+if (nrow(area_sorteio) == 0) {
+  stop("Erro: Nenhuma área de floresta encontrada no município.")
+}
+```
+```{r}
+#visualizando
+
+ggplot() +
+  geom_spatraster(data = r_utm) +
+  scale_fill_manual(values = legenda$Cores, na.value = "white", name = "Uso do Solo") +
+
+  # limite do município
+  geom_spatvector(data = municipio_limite, fill = NA, color = "black", linewidth = 1) +
+
+  # área de floresta total
+  geom_spatvector(data = floresta, fill = "darkgreen", alpha = 0.3, color = NA) +
+
+  # área de sorteio (floresta dentro do município)
+  geom_spatvector(data = area_sorteio, fill = "forestgreen", alpha = 0.5, color = NA) +
+
+  labs(title = "Mapa de uso e cobertura do solo em Cabaceiras-PB)") +
+  theme_minimal()
+
+#sorteio de pontos com distancia minima
+
+set.seed(1234)
+pontos_finais <- NULL
+tentativas <- 0
+
+while(is.null(pontos_finais) || nrow(pontos_finais) < 15) {
+  tentativas <- tentativas + 1
+  cand <- spatSample(area_sorteio, size = 1, method = "random")
+
+  if (nrow(cand) > 0) {
+    if (is.null(pontos_finais)) {
+      pontos_finais <- cand
+    } else {
+      dists <- distance(cand, pontos_finais)
+      if (min(dists) >= 1000) {
+        pontos_finais <- rbind(pontos_finais, cand)
+      }
+    }
+  }
+
+  if (tentativas > 5000) break
+}
+
+#buffers e extração da composição da paisagem
+
+# Verificar CRS
+if (!identical(crs(pontos_finais), crs(r_utm))) {
+  pontos_finais <- project(pontos_finais, crs(r_utm))
+}
+
+buffers <- buffer(pontos_finais, width = 500)
+buffers$id_paisagem <- 1:nrow(buffers)
+
+# Extração e processamento
+extracao <- terra::extract(r_utm, buffers)
+nome_col_raster <- names(extracao)[2]
+
+tabela_final <- extracao %>%
+  rename(id_buffer = ID, categoria_bruta = !!sym(nome_col_raster)) %>%
+  group_by(id_buffer) %>%
+  mutate(total_px = n()) %>%
+  group_by(id_buffer, categoria_bruta) %>%
+  summarise(
+    pixels = n(),
+    percentagem = (pixels / first(total_px)) * 100,
+    .groups = "drop"
+  ) %>%
+  mutate(Categoria_Limpa = as.character(categoria_bruta)) %>%
+  left_join(legenda %>% select(Categoria, Cores), by = c("Categoria_Limpa" = "Categoria"))
+
+write.csv(tabela_final, "uso_solo_cabaceiras_final.csv", row.names = FALSE)
+writeVector(pontos_finais, "pontos_final.shp", overwrite=TRUE)
+
+writeVector(buffers, "buffers_500m.shp", overwrite=TRUE)
+
+#visualização
+
+library(terra)
+
+# adicionar ID aos pontos
+pontos_finais$ID <- 1:nrow(pontos_finais)
+
+ggplot() +
+  geom_spatraster(data = r_utm) +
+  scale_fill_manual(values = legenda$Cores, na.value = "white", name = "Uso do Solo") +
+  geom_spatvector(data = buffers, fill = NA, color = "black", linewidth = 1) +
+  geom_spatvector(data = pontos_finais, color = "red", size = 2) +
+  geom_spatvector_text(data = pontos_finais, aes(label = ID),
+                       color = "white", size = 3, vjust = -0.8) +
+  labs(title = "Pontos amostrais e buffers de 500 m") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+```{r}
+#analise com landscapemetrics ----------------------------------------
+
+# Identificar o valor numérico da classe Floresta
+id_floresta <- legenda$id[legenda$Categoria == "Formação Florestal"]
+
+# Lista para armazenar métricas de cada buffer
+metricas_lista <- list()
+
+# armazenar as métricas de patch
+metricas_patch_lista <- list()
+
+for(i in 1:nrow(buffers)) {
+  # Recortar o raster para o buffer i
+  crop_i <- crop(r_utm, buffers[i,])
+  mask_i <- mask(crop_i, buffers[i,])
+
+  # Calcular duversidade Shannon diversity
+  shannon <- lsm_l_shdi(mask_i)
+
+  # Calcular métricas de classe para todas as classes
+  pland_all <- lsm_c_pland(mask_i)
+  ed_all <- lsm_c_ed(mask_i)
+
+
+  # Calcula as métricas de patch
+  p_area  <- lsm_p_area(mask_i)
+  p_core  <- lsm_p_core(mask_i)
+  p_perim <- lsm_p_perim(mask_i)
+  p_shape <- lsm_p_shape(mask_i)
+  p_frac  <- lsm_p_frac(mask_i)
+  p_enn   <- lsm_p_enn(mask_i)
+
+  # Combina todas as métricas de patch do buffer
+  patch_all <- bind_rows(p_area, p_core, p_perim, p_shape, p_frac, p_enn)
+
+  # Filtrando apenas para a classe floresta e adicionando o id do buffer
+  patch_floresta <- patch_all %>%
+    filter(class == id_floresta) %>%
+    mutate(id_buffer = i)
+
+  # Guardando na nova lista
+  metricas_patch_lista[[i]] <- patch_floresta
+
+
+  # Filtrar apenas a classe floresta
+  pland_floresta <- pland_all %>% filter(class == id_floresta)
+  ed_floresta <- ed_all %>% filter(class == id_floresta)
+
+  # Extrair valores (se não houver floresta, colocar NA ou 0)
+  div_shannon <- shannon$value
+  perc_floresta <- ifelse(nrow(pland_floresta) > 0, pland_floresta$value, 0)
+  dens_borda <- ifelse(nrow(ed_floresta) > 0, ed_floresta$value, NA)
+
+  # Guardar
+  metricas_lista[[i]] <- data.frame(
+    id_buffer = i,
+    diversidade_shannon = div_shannon,
+    perc_floresta = perc_floresta,
+    densidade_borda_m_ha = dens_borda
+  )
+}
+
+# Combinar tudo
+metricas_paisagem <- bind_rows(metricas_lista)
+metricas_patch <- bind_rows(metricas_patch_lista) # Combina a nova rodada
+
+# Transformar a tabela de manchas no formato do professor (1 linha por buffer)
+tabela_patch <- metricas_patch %>%
+  # Agrupa pelo buffer e pela métrica
+  group_by(id_buffer, metric) %>%
+  # Tira a média dos valores das manchas para cada métrica dentro do buffer
+  summarise(value = mean(value, na.rm = TRUE), .groups = "drop") %>%
+  # Transforma as linhas das métricas em colunas
+  pivot_wider(names_from = metric, values_from = value) %>%
+  # Renomeia id_buffer para plot_id para ficar idêntico ao exemplo
+  rename(plot_id = id_buffer)
+
+# Visualizar como ficou
+print(tabela_patch)
+
+print(metricas_paisagem)
+
+
+write.csv(metricas_paisagem, "metricas_landscapemetrics.csv", row.names = FALSE)
+
+write.csv(metricas_patch, "metricas_patch_landscapemetrics.csv", row.names = FALSE)
+
+```
+
+```{r}
+#painel de paisagens
+
+lista_recortes <- list()
+for(i in 1:nrow(buffers)) {
+  crop_i <- crop(r_utm, buffers[i, ])
+  mask_i <- mask(crop_i, buffers[i, ])
+  df_i <- as.data.frame(mask_i, xy = TRUE, cells = TRUE)
+  df_i$id_buffer <- paste("Paisagem", i)
+  lista_recortes[[i]] <- df_i
+}
+df_painel <- bind_rows(lista_recortes)
+
+ggplot(df_painel) +
+  geom_tile(aes(x = x, y = y, fill = Categoria)) +
+  scale_fill_manual(values = setNames(legenda$Cores, legenda$Categoria)) +
+  facet_wrap(~id_buffer, nrow = 3, ncol = 5, scales = "free") +
+  theme_minimal() +
+  labs(title = "Painel de Amostragem: 15 Paisagens de Cabaceiras - PB",
+       subtitle = "Recortes circulares de 500m de raio (Interior de Floresta)",
+       fill = "Uso do Solo") +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        legend.position = "bottom")
+
+
+#Visulaizando somente a paisagem 5
+
+df_5 <- df_painel %>% filter(id_buffer == "Paisagem 5")
+
+ggplot(df_5) +
+  geom_tile(aes(x = x, y = y, fill = Categoria)) +
+  scale_fill_manual(values = setNames(legenda$Cores, legenda$Categoria)) +
+  coord_equal() +
+  theme_minimal() +
+  labs(title = "Detalhe da Paisagem 5",
+       fill = "Uso do Solo") +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank())
+
+#Visualizando somente a paisagem 4
+
+df_4 <- df_painel %>% filter(id_buffer == "Paisagem 4")
+
+ggplot(df_4) +
+  geom_tile(aes(x = x, y = y, fill = Categoria)) +
+  scale_fill_manual(values = setNames(legenda$Cores, legenda$Categoria)) +
+  coord_equal() +
+  theme_minimal() +
+  labs(title = "Detalhe da Paisagem 4",
+       fill = "Uso do Solo") +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank())
+```
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
