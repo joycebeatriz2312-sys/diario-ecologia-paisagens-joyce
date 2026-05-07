@@ -376,8 +376,9 @@ A área escolhida foi a 5, pois a mesma se destaca por ter a maior proporção d
 Embora as métricas apontem uma elevada densidade de borda (48,08 m/ha) devido a pressão das áreas de pastagem e do mosaico de usos do entorno, essa vulnerabilidade justifica necessidade de intervenção. 
 Porém, ao invés de adotar um modelo de conservação que visa o isolamento da área, a heterogeneidade e a ocupação antrópica dessa paisagem oferecem o cenário ideal para a criação de uma Unidade de Conservação de Uso Sustentável. Tendo em mente que presença de moradores e atividades agrícolas não deve ser vista como um impeditivo, mas como uma oportunidade para aplicar métodos de integração sustentável, como sistemas agroflorestais e técnicas de agricultura aliadas à restauração ecológica das bordas da floresta.
 
-
+::: {.callout-note collapse="true"}
 ## Por dentro do Exercicio 5: script e comentários
+
 
 **TENTATIVA CABACEIRAS -------------------------------------**
 
@@ -668,7 +669,7 @@ ggplot(df_4) +
         panel.grid = element_blank())
 ```
 
-
+:::
 
 
 
