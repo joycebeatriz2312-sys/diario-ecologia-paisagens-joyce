@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -453,283 +487,424 @@ Warning
 <section id="por-dentro-do-exercicio-5-script-e-comentários" class="level2">
 <h2 class="anchored" data-anchor-id="por-dentro-do-exercicio-5-script-e-comentários">Por dentro do Exercicio 5: script e comentários</h2>
 <p><strong>TENTATIVA CABACEIRAS ————————————-</strong></p>
-<pre><code>library(terra)
-library(tidyverse)
-library(tidyterra)
-library(landscapemetrics)
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'terra' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>terra 1.9.11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'tidyverse' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'ggplot2' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'tibble' foi compilado no R versão 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'tidyr' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'readr' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'purrr' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'dplyr' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'stringr' foi compilado no R versão 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'forcats' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'lubridate' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.0
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ tidyr::extract() masks terra::extract()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyterra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'tidyterra' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Anexando pacote: 'tidyterra'
 
+O seguinte objeto é mascarado por 'package:stats':
 
-r_cabaceiras &lt;- rast("2024_cabaceiras.tif")
-
-r_utm &lt;- project(r_cabaceiras, "EPSG:31984", method = "near")</code></pre>
-<pre><code>#Projeção e legenda
-
-legenda &lt;- data.frame(
-  id = c(3, 4, 11, 15, 20, 21, 24, 25, 33),
-  Categoria = c("Formação Florestal", "Formação Savânica", "Campo Alagado",
-                "Pastagem", "Cana", "Mosaico de Usos", "Área Urbanizada",
-                "Outras Áreas não Vegetadas", "Corpo d'Água"),
-  Cores = c("#006400", "#7cfc00", "#00ffff", "#ffff00", "#ff4500",
-            "#f4a460", "#ff0000", "#d3d3d3", "#0000ff")
-)
-
-levels(r_utm) &lt;- legenda[,1:2]
-</code></pre>
-<pre><code># definindo a área de sorteio (SEM restrição de borda)
-
-vetor_total &lt;- as.polygons(r_utm, dissolve = TRUE)
-
-# limite do município
-municipio_limite &lt;- aggregate(vetor_total)
-
-# selecionar apenas floresta
-floresta &lt;- vetor_total[vetor_total$Categoria == "Formação Florestal", ]
-
-# área de sorteio = floresta inteira dentro do município
-area_sorteio &lt;- mask(floresta, municipio_limite)
-
-# um único objeto
-if (is.list(area_sorteio)) {
-  area_sorteio &lt;- do.call(rbind, area_sorteio)
-}
-
-# checando...
-if (nrow(area_sorteio) == 0) {
-  stop("Erro: Nenhuma área de floresta encontrada no município.")
-}</code></pre>
-<pre><code>#visualizando
-
-ggplot() +
-  geom_spatraster(data = r_utm) +
-  scale_fill_manual(values = legenda$Cores, na.value = "white", name = "Uso do Solo") +
-
-  # limite do município
-  geom_spatvector(data = municipio_limite, fill = NA, color = "black", linewidth = 1) +
-
-  # área de floresta total
-  geom_spatvector(data = floresta, fill = "darkgreen", alpha = 0.3, color = NA) +
-
-  # área de sorteio (floresta dentro do município)
-  geom_spatvector(data = area_sorteio, fill = "forestgreen", alpha = 0.5, color = NA) +
-
-  labs(title = "Mapa de uso e cobertura do solo em Cabaceiras-PB)") +
-  theme_minimal()
-
-#sorteio de pontos com distancia minima
-
-set.seed(1234)
-pontos_finais &lt;- NULL
-tentativas &lt;- 0
-
-while(is.null(pontos_finais) || nrow(pontos_finais) &lt; 15) {
-  tentativas &lt;- tentativas + 1
-  cand &lt;- spatSample(area_sorteio, size = 1, method = "random")
-
-  if (nrow(cand) &gt; 0) {
-    if (is.null(pontos_finais)) {
-      pontos_finais &lt;- cand
-    } else {
-      dists &lt;- distance(cand, pontos_finais)
-      if (min(dists) &gt;= 1000) {
-        pontos_finais &lt;- rbind(pontos_finais, cand)
-      }
-    }
-  }
-
-  if (tentativas &gt; 5000) break
-}
-
-#buffers e extração da composição da paisagem
-
-# Verificar CRS
-if (!identical(crs(pontos_finais), crs(r_utm))) {
-  pontos_finais &lt;- project(pontos_finais, crs(r_utm))
-}
-
-buffers &lt;- buffer(pontos_finais, width = 500)
-buffers$id_paisagem &lt;- 1:nrow(buffers)
-
-# Extração e processamento
-extracao &lt;- terra::extract(r_utm, buffers)
-nome_col_raster &lt;- names(extracao)[2]
-
-tabela_final &lt;- extracao %&gt;%
-  rename(id_buffer = ID, categoria_bruta = !!sym(nome_col_raster)) %&gt;%
-  group_by(id_buffer) %&gt;%
-  mutate(total_px = n()) %&gt;%
-  group_by(id_buffer, categoria_bruta) %&gt;%
-  summarise(
-    pixels = n(),
-    percentagem = (pixels / first(total_px)) * 100,
-    .groups = "drop"
-  ) %&gt;%
-  mutate(Categoria_Limpa = as.character(categoria_bruta)) %&gt;%
-  left_join(legenda %&gt;% select(Categoria, Cores), by = c("Categoria_Limpa" = "Categoria"))
-
-write.csv(tabela_final, "uso_solo_cabaceiras_final.csv", row.names = FALSE)
-writeVector(pontos_finais, "pontos_final.shp", overwrite=TRUE)
-
-writeVector(buffers, "buffers_500m.shp", overwrite=TRUE)
-
-#visualização
-
-library(terra)
-
-# adicionar ID aos pontos
-pontos_finais$ID &lt;- 1:nrow(pontos_finais)
-
-ggplot() +
-  geom_spatraster(data = r_utm) +
-  scale_fill_manual(values = legenda$Cores, na.value = "white", name = "Uso do Solo") +
-  geom_spatvector(data = buffers, fill = NA, color = "black", linewidth = 1) +
-  geom_spatvector(data = pontos_finais, color = "red", size = 2) +
-  geom_spatvector_text(data = pontos_finais, aes(label = ID),
-                       color = "white", size = 3, vjust = -0.8) +
-  labs(title = "Pontos amostrais e buffers de 500 m") +
-  theme_minimal() +
-  theme(legend.position = "bottom")</code></pre>
-<pre><code>#analise com landscapemetrics ----------------------------------------
-
-# Identificar o valor numérico da classe Floresta
-id_floresta &lt;- legenda$id[legenda$Categoria == "Formação Florestal"]
-
-# Lista para armazenar métricas de cada buffer
-metricas_lista &lt;- list()
-
-# armazenar as métricas de patch
-metricas_patch_lista &lt;- list()
-
-for(i in 1:nrow(buffers)) {
-  # Recortar o raster para o buffer i
-  crop_i &lt;- crop(r_utm, buffers[i,])
-  mask_i &lt;- mask(crop_i, buffers[i,])
-
-  # Calcular duversidade Shannon diversity
-  shannon &lt;- lsm_l_shdi(mask_i)
-
-  # Calcular métricas de classe para todas as classes
-  pland_all &lt;- lsm_c_pland(mask_i)
-  ed_all &lt;- lsm_c_ed(mask_i)
-
-
-  # Calcula as métricas de patch
-  p_area  &lt;- lsm_p_area(mask_i)
-  p_core  &lt;- lsm_p_core(mask_i)
-  p_perim &lt;- lsm_p_perim(mask_i)
-  p_shape &lt;- lsm_p_shape(mask_i)
-  p_frac  &lt;- lsm_p_frac(mask_i)
-  p_enn   &lt;- lsm_p_enn(mask_i)
-
-  # Combina todas as métricas de patch do buffer
-  patch_all &lt;- bind_rows(p_area, p_core, p_perim, p_shape, p_frac, p_enn)
-
-  # Filtrando apenas para a classe floresta e adicionando o id do buffer
-  patch_floresta &lt;- patch_all %&gt;%
-    filter(class == id_floresta) %&gt;%
-    mutate(id_buffer = i)
-
-  # Guardando na nova lista
-  metricas_patch_lista[[i]] &lt;- patch_floresta
-
-
-  # Filtrar apenas a classe floresta
-  pland_floresta &lt;- pland_all %&gt;% filter(class == id_floresta)
-  ed_floresta &lt;- ed_all %&gt;% filter(class == id_floresta)
-
-  # Extrair valores (se não houver floresta, colocar NA ou 0)
-  div_shannon &lt;- shannon$value
-  perc_floresta &lt;- ifelse(nrow(pland_floresta) &gt; 0, pland_floresta$value, 0)
-  dens_borda &lt;- ifelse(nrow(ed_floresta) &gt; 0, ed_floresta$value, NA)
-
-  # Guardar
-  metricas_lista[[i]] &lt;- data.frame(
-    id_buffer = i,
-    diversidade_shannon = div_shannon,
-    perc_floresta = perc_floresta,
-    densidade_borda_m_ha = dens_borda
-  )
-}
-
-# Combinar tudo
-metricas_paisagem &lt;- bind_rows(metricas_lista)
-metricas_patch &lt;- bind_rows(metricas_patch_lista) # Combina a nova rodada
-
-# Transformar a tabela de manchas no formato do professor (1 linha por buffer)
-tabela_patch &lt;- metricas_patch %&gt;%
-  # Agrupa pelo buffer e pela métrica
-  group_by(id_buffer, metric) %&gt;%
-  # Tira a média dos valores das manchas para cada métrica dentro do buffer
-  summarise(value = mean(value, na.rm = TRUE), .groups = "drop") %&gt;%
-  # Transforma as linhas das métricas em colunas
-  pivot_wider(names_from = metric, values_from = value) %&gt;%
-  # Renomeia id_buffer para plot_id para ficar idêntico ao exemplo
-  rename(plot_id = id_buffer)
-
-# Visualizar como ficou
-print(tabela_patch)
-
-print(metricas_paisagem)
-
-
-write.csv(metricas_paisagem, "metricas_landscapemetrics.csv", row.names = FALSE)
-
-write.csv(metricas_patch, "metricas_patch_landscapemetrics.csv", row.names = FALSE)
-</code></pre>
-<pre><code>#painel de paisagens
-
-lista_recortes &lt;- list()
-for(i in 1:nrow(buffers)) {
-  crop_i &lt;- crop(r_utm, buffers[i, ])
-  mask_i &lt;- mask(crop_i, buffers[i, ])
-  df_i &lt;- as.data.frame(mask_i, xy = TRUE, cells = TRUE)
-  df_i$id_buffer &lt;- paste("Paisagem", i)
-  lista_recortes[[i]] &lt;- df_i
-}
-df_painel &lt;- bind_rows(lista_recortes)
-
-ggplot(df_painel) +
-  geom_tile(aes(x = x, y = y, fill = Categoria)) +
-  scale_fill_manual(values = setNames(legenda$Cores, legenda$Categoria)) +
-  facet_wrap(~id_buffer, nrow = 3, ncol = 5, scales = "free") +
-  theme_minimal() +
-  labs(title = "Painel de Amostragem: 15 Paisagens de Cabaceiras - PB",
-       subtitle = "Recortes circulares de 500m de raio (Interior de Floresta)",
-       fill = "Uso do Solo") +
-  theme(axis.text = element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid = element_blank(),
-        legend.position = "bottom")
-
-
-#Visulaizando somente a paisagem 5
-
-df_5 &lt;- df_painel %&gt;% filter(id_buffer == "Paisagem 5")
-
-ggplot(df_5) +
-  geom_tile(aes(x = x, y = y, fill = Categoria)) +
-  scale_fill_manual(values = setNames(legenda$Cores, legenda$Categoria)) +
-  coord_equal() +
-  theme_minimal() +
-  labs(title = "Detalhe da Paisagem 5",
-       fill = "Uso do Solo") +
-  theme(axis.text = element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid = element_blank())
-
-#Visualizando somente a paisagem 4
-
-df_4 &lt;- df_painel %&gt;% filter(id_buffer == "Paisagem 4")
-
-ggplot(df_4) +
-  geom_tile(aes(x = x, y = y, fill = Categoria)) +
-  scale_fill_manual(values = setNames(legenda$Cores, legenda$Categoria)) +
-  coord_equal() +
-  theme_minimal() +
-  labs(title = "Detalhe da Paisagem 4",
-       fill = "Uso do Solo") +
-  theme(axis.text = element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid = element_blank())</code></pre>
+    filter</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(landscapemetrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pacote 'landscapemetrics' foi compilado no R versão 4.5.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>r_cabaceiras <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"2024_cabaceiras.tif"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>r_utm <span class="ot">&lt;-</span> <span class="fu">project</span>(r_cabaceiras, <span class="st">"EPSG:31984"</span>, <span class="at">method =</span> <span class="st">"near"</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Projeção e legenda</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>legenda <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">11</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">33</span>),</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Categoria =</span> <span class="fu">c</span>(<span class="st">"Formação Florestal"</span>, <span class="st">"Formação Savânica"</span>, <span class="st">"Campo Alagado"</span>,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Pastagem"</span>, <span class="st">"Cana"</span>, <span class="st">"Mosaico de Usos"</span>, <span class="st">"Área Urbanizada"</span>,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Outras Áreas não Vegetadas"</span>, <span class="st">"Corpo d'Água"</span>),</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cores =</span> <span class="fu">c</span>(<span class="st">"#006400"</span>, <span class="st">"#7cfc00"</span>, <span class="st">"#00ffff"</span>, <span class="st">"#ffff00"</span>, <span class="st">"#ff4500"</span>,</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"#f4a460"</span>, <span class="st">"#ff0000"</span>, <span class="st">"#d3d3d3"</span>, <span class="st">"#0000ff"</span>)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(r_utm) <span class="ot">&lt;-</span> legenda[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="co"># definindo a área de sorteio (SEM restrição de borda)</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>vetor_total <span class="ot">&lt;-</span> <span class="fu">as.polygons</span>(r_utm, <span class="at">dissolve =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="co"># limite do município</span></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>municipio_limite <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(vetor_total)</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a><span class="co"># selecionar apenas floresta</span></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>floresta <span class="ot">&lt;-</span> vetor_total[vetor_total<span class="sc">$</span>Categoria <span class="sc">==</span> <span class="st">"Formação Florestal"</span>, ]</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a><span class="co"># área de sorteio = floresta inteira dentro do município</span></span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>area_sorteio <span class="ot">&lt;-</span> <span class="fu">mask</span>(floresta, municipio_limite)</span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a><span class="co"># um único objeto</span></span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.list</span>(area_sorteio)) {</span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>  area_sorteio <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, area_sorteio)</span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a><span class="co"># checando...</span></span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(area_sorteio) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"Erro: Nenhuma área de floresta encontrada no município."</span>)</span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a><span class="co">#visualizando</span></span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(<span class="at">data =</span> r_utm) <span class="sc">+</span></span>
+<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> legenda<span class="sc">$</span>Cores, <span class="at">na.value =</span> <span class="st">"white"</span>, <span class="at">name =</span> <span class="st">"Uso do Solo"</span>) <span class="sc">+</span></span>
+<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># limite do município</span></span>
+<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatvector</span>(<span class="at">data =</span> municipio_limite, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a>  <span class="co"># área de floresta total</span></span>
+<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatvector</span>(<span class="at">data =</span> floresta, <span class="at">fill =</span> <span class="st">"darkgreen"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a>  <span class="co"># área de sorteio (floresta dentro do município)</span></span>
+<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatvector</span>(<span class="at">data =</span> area_sorteio, <span class="at">fill =</span> <span class="st">"forestgreen"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mapa de uso e cobertura do solo em Cabaceiras-PB)"</span>) <span class="sc">+</span></span>
+<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;SpatRaster&gt; resampled to 501200 cells.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exercícios_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sorteio de pontos com distancia minima</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>pontos_finais <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>tentativas <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(<span class="fu">is.null</span>(pontos_finais) <span class="sc">||</span> <span class="fu">nrow</span>(pontos_finais) <span class="sc">&lt;</span> <span class="dv">15</span>) {</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  tentativas <span class="ot">&lt;-</span> tentativas <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  cand <span class="ot">&lt;-</span> <span class="fu">spatSample</span>(area_sorteio, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">method =</span> <span class="st">"random"</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(cand) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.null</span>(pontos_finais)) {</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>      pontos_finais <span class="ot">&lt;-</span> cand</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>      dists <span class="ot">&lt;-</span> <span class="fu">distance</span>(cand, pontos_finais)</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">min</span>(dists) <span class="sc">&gt;=</span> <span class="dv">1000</span>) {</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>        pontos_finais <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pontos_finais, cand)</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (tentativas <span class="sc">&gt;</span> <span class="dv">5000</span>) <span class="cf">break</span></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a><span class="co">#buffers e extração da composição da paisagem</span></span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar CRS</span></span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">identical</span>(<span class="fu">crs</span>(pontos_finais), <span class="fu">crs</span>(r_utm))) {</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>  pontos_finais <span class="ot">&lt;-</span> <span class="fu">project</span>(pontos_finais, <span class="fu">crs</span>(r_utm))</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>buffers <span class="ot">&lt;-</span> <span class="fu">buffer</span>(pontos_finais, <span class="at">width =</span> <span class="dv">500</span>)</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>buffers<span class="sc">$</span>id_paisagem <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(buffers)</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Extração e processamento</span></span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>extracao <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">extract</span>(r_utm, buffers)</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>nome_col_raster <span class="ot">&lt;-</span> <span class="fu">names</span>(extracao)[<span class="dv">2</span>]</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>tabela_final <span class="ot">&lt;-</span> extracao <span class="sc">%&gt;%</span></span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">id_buffer =</span> ID, <span class="at">categoria_bruta =</span> <span class="sc">!!</span><span class="fu">sym</span>(nome_col_raster)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_buffer) <span class="sc">%&gt;%</span></span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_px =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_buffer, categoria_bruta) <span class="sc">%&gt;%</span></span>
+<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">pixels =</span> <span class="fu">n</span>(),</span>
+<span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentagem =</span> (pixels <span class="sc">/</span> <span class="fu">first</span>(total_px)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb32-48"><a href="#cb32-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb32-49"><a href="#cb32-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Categoria_Limpa =</span> <span class="fu">as.character</span>(categoria_bruta)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-50"><a href="#cb32-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(legenda <span class="sc">%&gt;%</span> <span class="fu">select</span>(Categoria, Cores), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Categoria_Limpa"</span> <span class="ot">=</span> <span class="st">"Categoria"</span>))</span>
+<span id="cb32-51"><a href="#cb32-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-52"><a href="#cb32-52" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(tabela_final, <span class="st">"uso_solo_cabaceiras_final.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb32-53"><a href="#cb32-53" aria-hidden="true" tabindex="-1"></a><span class="fu">writeVector</span>(pontos_finais, <span class="st">"pontos_final.shp"</span>, <span class="at">overwrite=</span><span class="cn">TRUE</span>)</span>
+<span id="cb32-54"><a href="#cb32-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-55"><a href="#cb32-55" aria-hidden="true" tabindex="-1"></a><span class="fu">writeVector</span>(buffers, <span class="st">"buffers_500m.shp"</span>, <span class="at">overwrite=</span><span class="cn">TRUE</span>)</span>
+<span id="cb32-56"><a href="#cb32-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-57"><a href="#cb32-57" aria-hidden="true" tabindex="-1"></a><span class="co">#visualização</span></span>
+<span id="cb32-58"><a href="#cb32-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-59"><a href="#cb32-59" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb32-60"><a href="#cb32-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-61"><a href="#cb32-61" aria-hidden="true" tabindex="-1"></a><span class="co"># adicionar ID aos pontos</span></span>
+<span id="cb32-62"><a href="#cb32-62" aria-hidden="true" tabindex="-1"></a>pontos_finais<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pontos_finais)</span>
+<span id="cb32-63"><a href="#cb32-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-64"><a href="#cb32-64" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb32-65"><a href="#cb32-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(<span class="at">data =</span> r_utm) <span class="sc">+</span></span>
+<span id="cb32-66"><a href="#cb32-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> legenda<span class="sc">$</span>Cores, <span class="at">na.value =</span> <span class="st">"white"</span>, <span class="at">name =</span> <span class="st">"Uso do Solo"</span>) <span class="sc">+</span></span>
+<span id="cb32-67"><a href="#cb32-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatvector</span>(<span class="at">data =</span> buffers, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb32-68"><a href="#cb32-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatvector</span>(<span class="at">data =</span> pontos_finais, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb32-69"><a href="#cb32-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatvector_text</span>(<span class="at">data =</span> pontos_finais, <span class="fu">aes</span>(<span class="at">label =</span> ID),</span>
+<span id="cb32-70"><a href="#cb32-70" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb32-71"><a href="#cb32-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pontos amostrais e buffers de 500 m"</span>) <span class="sc">+</span></span>
+<span id="cb32-72"><a href="#cb32-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb32-73"><a href="#cb32-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;SpatRaster&gt; resampled to 501200 cells.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exercícios_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#analise com landscapemetrics ----------------------------------------</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificar o valor numérico da classe Floresta</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>id_floresta <span class="ot">&lt;-</span> legenda<span class="sc">$</span>id[legenda<span class="sc">$</span>Categoria <span class="sc">==</span> <span class="st">"Formação Florestal"</span>]</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista para armazenar métricas de cada buffer</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>metricas_lista <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co"># armazenar as métricas de patch</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>metricas_patch_lista <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(buffers)) {</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Recortar o raster para o buffer i</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  crop_i <span class="ot">&lt;-</span> <span class="fu">crop</span>(r_utm, buffers[i,])</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  mask_i <span class="ot">&lt;-</span> <span class="fu">mask</span>(crop_i, buffers[i,])</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcular duversidade Shannon diversity</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>  shannon <span class="ot">&lt;-</span> <span class="fu">lsm_l_shdi</span>(mask_i)</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcular métricas de classe para todas as classes</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>  pland_all <span class="ot">&lt;-</span> <span class="fu">lsm_c_pland</span>(mask_i)</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  ed_all <span class="ot">&lt;-</span> <span class="fu">lsm_c_ed</span>(mask_i)</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcula as métricas de patch</span></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>  p_area  <span class="ot">&lt;-</span> <span class="fu">lsm_p_area</span>(mask_i)</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>  p_core  <span class="ot">&lt;-</span> <span class="fu">lsm_p_core</span>(mask_i)</span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>  p_perim <span class="ot">&lt;-</span> <span class="fu">lsm_p_perim</span>(mask_i)</span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>  p_shape <span class="ot">&lt;-</span> <span class="fu">lsm_p_shape</span>(mask_i)</span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>  p_frac  <span class="ot">&lt;-</span> <span class="fu">lsm_p_frac</span>(mask_i)</span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>  p_enn   <span class="ot">&lt;-</span> <span class="fu">lsm_p_enn</span>(mask_i)</span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combina todas as métricas de patch do buffer</span></span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>  patch_all <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(p_area, p_core, p_perim, p_shape, p_frac, p_enn)</span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filtrando apenas para a classe floresta e adicionando o id do buffer</span></span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>  patch_floresta <span class="ot">&lt;-</span> patch_all <span class="sc">%&gt;%</span></span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(class <span class="sc">==</span> id_floresta) <span class="sc">%&gt;%</span></span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">id_buffer =</span> i)</span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Guardando na nova lista</span></span>
+<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a>  metricas_patch_lista[[i]] <span class="ot">&lt;-</span> patch_floresta</span>
+<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filtrar apenas a classe floresta</span></span>
+<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a>  pland_floresta <span class="ot">&lt;-</span> pland_all <span class="sc">%&gt;%</span> <span class="fu">filter</span>(class <span class="sc">==</span> id_floresta)</span>
+<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a>  ed_floresta <span class="ot">&lt;-</span> ed_all <span class="sc">%&gt;%</span> <span class="fu">filter</span>(class <span class="sc">==</span> id_floresta)</span>
+<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extrair valores (se não houver floresta, colocar NA ou 0)</span></span>
+<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a>  div_shannon <span class="ot">&lt;-</span> shannon<span class="sc">$</span>value</span>
+<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a>  perc_floresta <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">nrow</span>(pland_floresta) <span class="sc">&gt;</span> <span class="dv">0</span>, pland_floresta<span class="sc">$</span>value, <span class="dv">0</span>)</span>
+<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a>  dens_borda <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">nrow</span>(ed_floresta) <span class="sc">&gt;</span> <span class="dv">0</span>, ed_floresta<span class="sc">$</span>value, <span class="cn">NA</span>)</span>
+<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Guardar</span></span>
+<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a>  metricas_lista[[i]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb34-56"><a href="#cb34-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_buffer =</span> i,</span>
+<span id="cb34-57"><a href="#cb34-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">diversidade_shannon =</span> div_shannon,</span>
+<span id="cb34-58"><a href="#cb34-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_floresta =</span> perc_floresta,</span>
+<span id="cb34-59"><a href="#cb34-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">densidade_borda_m_ha =</span> dens_borda</span>
+<span id="cb34-60"><a href="#cb34-60" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-61"><a href="#cb34-61" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-62"><a href="#cb34-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-63"><a href="#cb34-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinar tudo</span></span>
+<span id="cb34-64"><a href="#cb34-64" aria-hidden="true" tabindex="-1"></a>metricas_paisagem <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(metricas_lista)</span>
+<span id="cb34-65"><a href="#cb34-65" aria-hidden="true" tabindex="-1"></a>metricas_patch <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(metricas_patch_lista) <span class="co"># Combina a nova rodada</span></span>
+<span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar a tabela de manchas no formato do professor (1 linha por buffer)</span></span>
+<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a>tabela_patch <span class="ot">&lt;-</span> metricas_patch <span class="sc">%&gt;%</span></span>
+<span id="cb34-69"><a href="#cb34-69" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agrupa pelo buffer e pela métrica</span></span>
+<span id="cb34-70"><a href="#cb34-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_buffer, metric) <span class="sc">%&gt;%</span></span>
+<span id="cb34-71"><a href="#cb34-71" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Tira a média dos valores das manchas para cada métrica dentro do buffer</span></span>
+<span id="cb34-72"><a href="#cb34-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">value =</span> <span class="fu">mean</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-73"><a href="#cb34-73" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Transforma as linhas das métricas em colunas</span></span>
+<span id="cb34-74"><a href="#cb34-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> metric, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span></span>
+<span id="cb34-75"><a href="#cb34-75" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Renomeia id_buffer para plot_id para ficar idêntico ao exemplo</span></span>
+<span id="cb34-76"><a href="#cb34-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">plot_id =</span> id_buffer)</span>
+<span id="cb34-77"><a href="#cb34-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-78"><a href="#cb34-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar como ficou</span></span>
+<span id="cb34-79"><a href="#cb34-79" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tabela_patch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 7
+   plot_id  area   core   enn  frac perim shape
+     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1       1 1.51  0.0888 107.   1.12  924.  1.83
+ 2       2 1.40  0.244  143.   1.10  790.  1.68
+ 3       3 0.444 0      NaN    1.03  298.  1.12
+ 4       4 4.84  2.18   246.   1.11 1520.  1.81
+ 5       5 2.31  1.19   115.   1.06  751.  1.43
+ 6       6 1.60  0.178   89.4  1.14  983.  1.94
+ 7       7 1.15  0.178  NaN    1.07  596.  1.39
+ 8       8 2.22  0.0888 NaN    1.16 1311.  2.20
+ 9       9 3.28  0.977  NaN    1.15 1609.  2.22
+10      10 0.222 0      364.   1.07  268.  1.38
+11      11 1.78  0.533  NaN    1.02  596.  1.12
+12      12 1.07  0.0888 NaN    1.08  596.  1.44
+13      13 0.444 0      NaN    1.03  298.  1.12
+14      14 0.444 0      233.   1.14  507.  1.86
+15      15 0.400 0      215.   1.04  298.  1.19</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(metricas_paisagem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   id_buffer diversidade_shannon perc_floresta densidade_borda_m_ha
+1          1          1.23057611     3.6286019            22.206778
+2          2          1.43889928     6.7235859            37.608253
+3          3          1.28042224     0.5393743             3.620376
+4          4          0.98333430    11.7583603            36.203763
+5          5          1.33698655    18.2584270            48.078801
+6          6          1.32890281     3.8379531            23.614271
+7          7          1.25104207     1.3874066             7.163477
+8          8          0.79134328     2.6539278            15.675999
+9          9          0.62975187     4.0000000            19.592302
+10        10          0.17227395     1.0245902            11.003570
+11        11          1.12990123     2.1668472             7.272132
+12        12          0.75669105     2.1164021             6.510931
+13        13          1.11726105     0.5319149             3.570307
+14        14          1.13870407     1.0660981            12.164928
+15        15          0.08304324     1.6245487            10.904260</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(metricas_paisagem, <span class="st">"metricas_landscapemetrics.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(metricas_patch, <span class="st">"metricas_patch_landscapemetrics.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co">#painel de paisagens</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>lista_recortes <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(buffers)) {</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  crop_i <span class="ot">&lt;-</span> <span class="fu">crop</span>(r_utm, buffers[i, ])</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  mask_i <span class="ot">&lt;-</span> <span class="fu">mask</span>(crop_i, buffers[i, ])</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  df_i <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mask_i, <span class="at">xy =</span> <span class="cn">TRUE</span>, <span class="at">cells =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  df_i<span class="sc">$</span>id_buffer <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Paisagem"</span>, i)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  lista_recortes[[i]] <span class="ot">&lt;-</span> df_i</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>df_painel <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(lista_recortes)</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_painel) <span class="sc">+</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> Categoria)) <span class="sc">+</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">setNames</span>(legenda<span class="sc">$</span>Cores, legenda<span class="sc">$</span>Categoria)) <span class="sc">+</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>id_buffer, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Painel de Amostragem: 15 Paisagens de Cabaceiras - PB"</span>,</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Recortes circulares de 500m de raio (Interior de Floresta)"</span>,</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Uso do Solo"</span>) <span class="sc">+</span></span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exercícios_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visulaizando somente a paisagem 5</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>df_5 <span class="ot">&lt;-</span> df_painel <span class="sc">%&gt;%</span> <span class="fu">filter</span>(id_buffer <span class="sc">==</span> <span class="st">"Paisagem 5"</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_5) <span class="sc">+</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> Categoria)) <span class="sc">+</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">setNames</span>(legenda<span class="sc">$</span>Cores, legenda<span class="sc">$</span>Categoria)) <span class="sc">+</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Detalhe da Paisagem 5"</span>,</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Uso do Solo"</span>) <span class="sc">+</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exercícios_files/figure-html/unnamed-chunk-1-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizando somente a paisagem 4</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>df_4 <span class="ot">&lt;-</span> df_painel <span class="sc">%&gt;%</span> <span class="fu">filter</span>(id_buffer <span class="sc">==</span> <span class="st">"Paisagem 4"</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_4) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> Categoria)) <span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">setNames</span>(legenda<span class="sc">$</span>Cores, legenda<span class="sc">$</span>Categoria)) <span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Detalhe da Paisagem 4"</span>,</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Uso do Solo"</span>) <span class="sc">+</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Exercícios_files/figure-html/unnamed-chunk-1-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>

@@ -380,7 +380,7 @@ Porém, ao invés de adotar um modelo de conservação que visa o isolamento da 
 ## Por dentro do Exercicio 5: script e comentários
 
 **TENTATIVA CABACEIRAS -------------------------------------**
-::: {.callout-note collapse="true"}
+
 ```{r}
 library(terra)
 library(tidyverse)
@@ -391,8 +391,7 @@ library(landscapemetrics)
 r_cabaceiras <- rast("2024_cabaceiras.tif")
 
 r_utm <- project(r_cabaceiras, "EPSG:31984", method = "near")
-```
-```{r}
+
 #Projeção e legenda
 
 legenda <- data.frame(
@@ -406,8 +405,7 @@ legenda <- data.frame(
 
 levels(r_utm) <- legenda[,1:2]
 
-```
-```{r}
+
 # definindo a área de sorteio (SEM restrição de borda)
 
 vetor_total <- as.polygons(r_utm, dissolve = TRUE)
@@ -430,8 +428,7 @@ if (is.list(area_sorteio)) {
 if (nrow(area_sorteio) == 0) {
   stop("Erro: Nenhuma área de floresta encontrada no município.")
 }
-```
-```{r}
+
 #visualizando
 
 ggplot() +
@@ -523,9 +520,9 @@ ggplot() +
   labs(title = "Pontos amostrais e buffers de 500 m") +
   theme_minimal() +
   theme(legend.position = "bottom")
-```
 
-```{r}
+
+
 #analise com landscapemetrics ----------------------------------------
 
 # Identificar o valor numérico da classe Floresta
@@ -613,9 +610,7 @@ write.csv(metricas_paisagem, "metricas_landscapemetrics.csv", row.names = FALSE)
 
 write.csv(metricas_patch, "metricas_patch_landscapemetrics.csv", row.names = FALSE)
 
-```
 
-```{r}
 #painel de paisagens
 
 lista_recortes <- list()
@@ -673,7 +668,7 @@ ggplot(df_4) +
         panel.grid = element_blank())
 ```
 
-:::
+
 
 
 
