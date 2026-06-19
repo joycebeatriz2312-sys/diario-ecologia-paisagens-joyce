@@ -16,10 +16,16 @@ format:
 A região do Cariri Paraibano se localiza no centro-sul do estado da Paraíba, há cerca de 180 e pouco mais de 300 km da capital João Pessoa. Possui uma área de cerca de 11.192,01 km², o que corresponde a aproximadamente 20% do território do estado e é composta por 29 municípios. A região se destaca pelos baixos índices pluviométricos, em torno de 500 mm anuais e temperaturas médias elevadas, próximas de 27°C. Além disso, a região apresenta dominância de caatinga hiperxerófila, altitudes médias em torno de 500 metros e solos geralmente rasos, muitas vezes associados a elevados teores de salinidade. Essas características, junto da baixa disponibilidade hídrica e dos altos níveis de degradação da cobertura vegetal historicamente registrados na região, propiciam eventos ambientais como a desertificação, o que torna o cariri uma área interessante para estudos relacionados à dinâmica da paisagem e conservação ambiental.
 
 #### Mapa de cobertura
+![Mapa de uso e cobertura do solo da região do Cariri PB](images\mapa_cariri_lulc.png)
+
 #### Métricas de paisagem
 
-![visualização dos Pontos amostrais e buffers de 500m](images\)
-
+![Tabela Métricas calculadas](images\metricas_paisagem.png)
+![Tabela Métricas calculadas](images\metricas_classe.png)
+![Tabela Métricas calculadas](images\metricas_mancha.png)
+![Tabela Métricas calculadas](images\15_fragmentos.png)
+![Tabela Métricas calculadas](images\15_fragmentoss.png)
+![Tabela Métricas calculadas](images\painel_top15_patches_cariri.png)
 
 #### Interpretação do padrão
 
@@ -43,6 +49,10 @@ A heterogeneidade moderada observada, medida pelo SHDI, é refletida por um mosa
 Hotspots de Produtividade Primária Líquida (NPP) e estoque de carbono podem estar estar restritos aos pequenos fragmentos florestais grandes (368) da área. Mesmo que a floresta represente apenas 17,8% da paisagem, esses remanescentes podem concentrar maior quantidade de biomassa, valores maiores que em áreas abertas (Longo 2016). O alto AI da floresta (94.8%) pode sugerir que alguns desses fragmentos conseguem preservar condições estáveis (Ewers 2013). Em algumas áreas classificadas como "Desertificação Muito Grave" (Caatinga Arbustiva Aberta), já foi possível observar uma diminuição progressiva da complexidade dos estratos (arbóreo, arbustivo e herbáceo), como observado por Souza para a região do cariri.
 
 
+![Esquema do efeito da fragmentação na migração e fluxo genico](images\chat_fluxo.png)
+![Diagrama de conectividade e da dinamina de fonte e dreno](images\chat_conectividade.png)
+![Grafico de distribuição de manchas de floresta](images\chat_np.png)
+
 # Parte 3: Análise de Ecologia Política
 
 
@@ -53,6 +63,7 @@ Hotspots de Produtividade Primária Líquida (NPP) e estoque de carbono podem es
 A partir de 1663, a partir de registros, a região do Cariri começou a ser colonizada e explorada economicamente. O pioneiro foi Antônio de Oliveira Lêdo de Pernambuco, que ganhou 30 “léguas” de terras próximas ao rio Paraíba, estabelecendo uma fazenda no lugar que deu origem à cidade de Boqueirão. 
 Pela descrição apresentada no artigo de Souza 2026, fica claro que a vegetação encontrada nesse trecho do Cariri era extensa, fechada e de porte arbóreo.
  
+![Registro histórico da presença de grandes florestas no cariri](images\hist_fala.png)
 
 Grande parte das tribos indígenas presentes nessas terras, não se submeteram à presença e ao domínio dos colonizadores. Então, organizaram a Confederação dos Cariris ou Guerra dos Bárbaros, conflito solucionado no início do século XVIII pelo extermínio e expulsão desses povos. Esse processo ajudou a ampliar as áreas destinadas à pecuária bovina, primeiro produto comercial do semiárido.
 Além do etnocídio e genocídio sofridos, outro fator decisivo para a expansão da pecuária foi uma Carta Régia de 1701, que determinava que a criação de gado, passasse a ocorrer a uma distância mínima de “10 léguas da costa”. Isso ocorreu por maior procura de carne bovina pelos engenhos de cana e pelos centros urbanos em expansão.
@@ -60,7 +71,8 @@ Com o avanço da pecuária extensiva iniciaram-se transformações mais intensas
 As áreas próximas dos rios foram mais exploradas pela à presença de água mesmo durante períodos secos. Nessas áreas existiram lavouras de ciclo curto, milho e feijão, voltadas para subsistência.
 Nas áreas próximas às sedes das fazendas, a caatinga passou por processos de degradação. As queimadas foram usadas pelos colonizadores de forma repetitiva e em escala maior, tornando os solos degradados e dificultando a regeneração natural da vegetação.
 Assim, desde a segunda metade do século XVII, iniciou-se um processo de modificação dos padrões originais da caatinga. A Caatinga Arbórea, as matas ciliares, e a Caatinga Arbóreo-arbustiva Fechada foram parcialmente substituídas por agricultura de subsistência, expansão das fazendas e introdução do gado. Com o aumento da ocupação e da população, o extrativismo vegetal para alimentação animal, carvão e lenha aumentou.
- 
+
+ ![Uso e cobertura de solo durante a colonização](images\lulc_antes.png)
 **Domínio da cotonicultura**
 
 Apesar das alterações feitas pela pecuária e agricultura de subsistência, foi a cotonicultura que transformou a paisagem do Cariri. Introduzido para produção de roupas rústicas e cultivado nos vales dos rios, o algodão aumentou a diminuição da Caatinga Arbórea e da Caatinga Arbóreo-arbustiva Fechada.
@@ -69,12 +81,15 @@ Esses impactos eram maiores na seca, como a grande estiagem de 1845–1846. Já 
  
 O declínio da cotonicultura teve maior impacto na década de 80, junto da praga do bicudo, somada a concorrência da fibras sintéticas em 1960 e à perda de competitividade da produção paraibana.
 
+![Uso e cobertura do solo durante o ciclo do algodão ](images\lulc_durante.png)
+
 **Fase atual**
 
 A partir de 1970, programas governamentais voltados à pecuária estimularam a atividade no semiárido. Entre 1971 e 1977, grande parte dos recursos do PROTERRA foram destinadas ao setor, com participação da SUDENE e do Projeto Sertanejo.
 Junto disso, também teve a introdução da algaroba (Prosopis juliflora), para reduzir a dependência das pastagens nativas. Na Paraíba, a expansão dela foi entre 1979 e 1986, ocupando áreas de rio e substituindo a mata ciliar nativa.
 Já em 1980, a pecuária teve retorno como atividade dominante no Cariri, aumentando as transformações da caatinga. 
  
+ ![Uso e cobertura do solo a partir dos anos 80](images\lulc_depois.png)
 
 **Guerra dos Bárbaros**
 Antes do avanço da colonização sobre o interior e sobre o Cariri, é necessário considerar que essas terras já eram ocupadas por diferentes povos indígenas. A ocupação portuguesa do território brasileiro teve início em 1500, com a chegada de Pedro Álvares Cabral e a tomada formal dessas terras em nome da Coroa portuguesa. Porem, a incorporação dos sertões ao domínio colonial ocorreu mais tarde e foi associada a expansão das atividades econômicas no interior.
@@ -91,11 +106,17 @@ Para os agricultores locais de subsistência, a paisagem está associada à disp
 Já para os povos indígenas, o território representava um espaço de ocupação e permanência. Mas, sua capacidade de influenciar a configuração atual da paisagem foi limitada pela expansão colonial, pelos conflitos territoriais e pelo processo de expulsão e extermínio ocorrido durante a Guerra dos Bárbaros.
 
 #### Cadeia de explicação
+![Cadeia de explicação dos eventos](images\hist_cadeia.png)
+![Cadeia de explicação dos eventos](images\hist_cadeia2.png)
+
 #### Mapeamento de atores
+
+![Fluxograma da identificação dos principais atores](images\hist_atores.png)
 
 # Parte 4: Proposta de Manejo Integrado
 
-####Diagnóstico integrado (síntese das partes 1–3)
+#### Diagnóstico integrado (síntese das partes 1–3)
+
 O principal problema ecológico da paisagem do Cariri Paraibano é a elevada fragmentação e degradação da vegetação nativa, associada ao avanço do solo exposto, perda de conectividade ecológica e intensificação de processos de desertificação. Sua origem está ligada a um processo histórico de ocupação territorial iniciado com a colonização e tomada das terras indígenas, seguido pela expansão de grandes fazendas, pecuária extensiva e cultivo do algodão, que promoveram a substituição das formações naturais e o esgotamento progressivo dos recursos ambientais. Atualmente, apesar da predominância de pequenas propriedades e agricultura familiar, a recuperação dessa paisagem depende da participação conjunta de produtores rurais, agricultura familiar, poder público e estratégias de conservação, especialmente voltadas à manutenção dos remanescentes florestais e à redução da pressão sobre os recursos naturais. Como a região sofre de um baixo idh e baixa economia, a solução de reverter o histórico de degradação deve partir dos órgãos governamentais e dos tomadores de decisão. Promovendo o incentivo da restauração da capacidade produtiva do ambiente junto com o incentivo a produtividade agrícola dos proprietários que dependem diretamente dos recursos naturais para subsistência. 
 4.2 Objetivos específicos
 Objetivo 1: Proteger os principais remanescentes florestais e ampliar a conectividade da paisagem.
@@ -110,14 +131,16 @@ A redução das áreas degradadas e dos processos de desertificação é fundame
 A recuperação dessas áreas pode aumentar a estabilidade produtiva das pequenas propriedades, reduzir a pressão sobre os remanescentes florestais e contribuir para a manutenção da produção agrícola. Para isso, podem ser integrados instrumentos como a Política Nacional de Combate à Desertificação, o Programa de Regularização Ambiental (PRA) e programas de recuperação ambiental voltados ao semiárido.
 
 
-## Intervenções espacialmente explícitas
+#### Intervenções espacialmente explícitas
+
 Os fragmentos de maior prioridade para proteção correspondem aos quatro grandes identificados na paisagem: os patches 17889 (4.285,5 ha), 34348 (3.272,3 ha), 32377 (1.368,8 ha) e 37885 (1.124,5 ha). Eles concentram as maiores áreas de formação florestal e apresentam alta importância ecologica.  Os fragmentos 38737, 36378, 39326, 32066 e 36822, vão atuar como áreas intermediárias para a manutenção dos fluxos ecológicos entre os grandes remanescentes e os fragmentos de tamanho entre 50 e 110 hectares vão funcionar como stepping stones, reduzindo o isolamento das manchas maiores e facilitando o deslocamento da fauna.
 A criação de corredores ecológicos (PRETO) prioriza a ligação entre os grandes remanescentes florestais, formando uma conexão que ajuda o fluxo gênico e reduza os efeitos do isolamento, essas áreas são os trechos onde a restauração florestal terá maiores conectividade estrutural e funcional.
 As zonas de amortecimento (ROSA) devem ser no entorno dos grandes remanescentes e das unidades de conservação existentes, com a intenção de reduzir os impactos da expansão agropecuária, do corte de lenha, da caça e das queimadas. Nessas áreas é preciso adotar práticas de conservação, associadas a programas de educação ambiental e manejo sustentável dos recursos.
 Já as zonas de uso sustentável (AZUL) devem ser ir para as áreas já antropizadas que estão ao redor dos núcleos de conservação, especialmente aquelas dominadas por agricultura, pastagens e solos expostos, observadas na porção central da região. Essas zonas vão funcionar como áreas de transição entre conservação e produção, estimulando sistemas agroflorestais, manejo sustentável, turismo de natureza e outras atividades de baixo impacto ambiental.
 As áreas de restauração com prioridade de recuperação são as áreas de preservação permanente junto dos cursos d'água e reservatórios, já que hoje em dia, a mata ciliar da região foi totalmente substituída por uma única espécie (algaroba), e os setores centrais do cariri que estão dominados pela agricultura, pastagens e solo exposto. As ações de restauração também devem dar prioridade para as áreas que apresentam maior potencial para aumentar a conectividade da paisagem, ou seja, os grandes fragmentos remanescentes.
 
-## Governança e participação
+#### Governança e participação
+
 O cumprimento do plano de manejo depende de uma governança participativa capaz de integrar os diferentes atores que atuam no Cariri. Como a conservação e a restauração envolvem áreas públicas e privadas, sua implementação precisa articular poder público, proprietários rurais, organizações da sociedade civil, instituições de pesquisa e órgãos ambientais estaduais e federais.
 No municipal, as ações devem ser coordenadas pelas Secretarias de Meio Ambiente e Agricultura, com apoio da SEMAS-PB, da SUDEMA e de programas estaduais voltados à adaptação climática e ao combate à desertificação. Em nível federal, o plano pode ser fortalecido por instrumentos como o PROVEG, o PLANAVEG e a legislação relacionada à restauração ecológica e aos serviços ecossistêmicos.
 A participação dos proprietários rurais, é fundamental pois parte das áreas prioritárias para restauração e conectividade está localizada em propriedades privadas. Por isso, os agricultores vão atuar como protagonistas do processo, contribuindo para a adoção de práticas sustentáveis, sistemas agroflorestais, recuperação de áreas degradadas e proteção dos rios.
@@ -125,7 +148,7 @@ Para garantir a participação social, pode ser criado um Fórum Regional de Con
 Os conflitos entre conservação ambiental, expansão agropecuária e uso dos recursos naturais devem ser tratados por meio de negociação e pactuação territorial, conciliando a atividade econômica com a proteção dos remanescentes florestais e das áreas prioritárias para conectividade ecológica.
 A implementação do plano pode ser financiada por recursos de compensações ambientais, multas e reparação de danos ambientais, além de fundos como o FUNBIO e o Fundo Clima, bem como programas internacionais voltados à adaptação climática, combate à desertificação e conservação da Caatinga. Também podem ser adotados programas de Pagamento por Serviços Ambientais (PSA), incentivos fiscais e linhas de crédito rural sustentável para estimular a conservação e a restauração ambiental.
 
-## Monitoramento
+#### Monitoramento
 O sucesso do plano deverá ser monitorado por indicadores ecológicos, sociais e de governança. O indicador ecológico será o percentual da paisagem ocupada por vegetação nativa (PLAND) e a área restaurada, acompanhados por sensoriamento remoto, dados do MapBiomas, levantamentos da SUDEMA e visitas de campo. O indicador social será o número de proprietários rurais e agricultores familiares participantes dos programas de restauração e conservação. Já o indicador de governança será o percentual de propriedades com Cadastro Ambiental Rural (CAR) regularizado e inseridas em programas ambientais municipais ou estaduais.
 Os indicadores deverão ser avaliados a cada dois a cinco anos, permitindo ajustes nas estratégias de manejo e o acompanhamento dos objetivos de conservação, conectividade ecológica e desenvolvimento sustentável no Cariri Paraibano.
 
