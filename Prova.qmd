@@ -15,13 +15,14 @@ format:
 
 A região do Cariri Paraibano se localiza no centro-sul do estado da Paraíba, há cerca de 180 e pouco mais de 300 km da capital João Pessoa. Possui uma área de cerca de 11.192,01 km², o que corresponde a aproximadamente 20% do território do estado e é composta por 29 municípios. A região se destaca pelos baixos índices pluviométricos, em torno de 500 mm anuais e temperaturas médias elevadas, próximas de 27°C. Além disso, a região apresenta dominância de caatinga hiperxerófila, altitudes médias em torno de 500 metros e solos geralmente rasos, muitas vezes associados a elevados teores de salinidade. Essas características, junto da baixa disponibilidade hídrica e dos altos níveis de degradação da cobertura vegetal historicamente registrados na região, propiciam eventos ambientais como a desertificação, o que torna o cariri uma área interessante para estudos relacionados à dinâmica da paisagem e conservação ambiental.
 
-## Mapa de cobertura
-## Métricas de paisagem
+#### Mapa de cobertura
+#### Métricas de paisagem
 
 ![visualização dos Pontos amostrais e buffers de 500m](images\)
 
 
-## Interpretação do padrão
+#### Interpretação do padrão
+
 A paisagem atual do Cariri Paraibano mostra um cenário de avançada fragmentação e degradação. No nível da paisagem, o Índice de Diversidade de Shannon (SHDI = 1,36) mostra uma heterogeneidade moderada para a área. Isso pode significar que a paisagem é controlada por poucas classes dominantes. Olhando para algumas métricas no nível de classe, vemos que a matriz dominante da paisagem não é a vegetação nativa (Floresta e arbusto). A classe que mais domina a região em área é o solo exposto, que ocupa cerca de 36.2% da região total (PLAND = 36,2).  Em seguida temos a vegetação arbustiva com 29,2%. Já a formação florestal ocupa somente cerca de 17,8% da área, e a área de atividades antrópicas/agropecuárias ocupa 16,3%, enquanto corpos hídricos representam somente 0,54% da área. Esses resultados sugerem uma severa perda de cobertura florestal e de vegetação nativa nessa área e um possível avanço de processos de desertificação para essa região.
 Mesmo se somarmos a formação florestal com vegetação arbustiva elas somente ocupam 47% do território total, então vemos que o grau de fragmentação dessas classes é crítico. Quando observamos o número de manchas (NP), eles nos mostram que a vegetação arbustiva está partida em 403 mil fragmentos, enquanto a formação florestal está partida em 70.891 manchas. E essa análise quando distribuímos em analises das manchas, vemos que 98.9% dos fragmentos de vegetação arbustiva e 96.7% dos fragmentos de floresta estão categorizados como pequenos (menores que 5 hectares), nos indicando um elevado nível de degradação. Quando olhamos para os fragmentos médios e grandes da formação florestal, vemos que eles representam somente cerca de 3,3% do território total, enquanto a vegetação arbustiva, representa 1,1% desse total, mostrando assim como as formações de vegetação nativas estão quebradas na paisagem. E quando calculamos as áreas de manchas florestais com menor distancia pro vizinho mais próximos, temos que cerca de 15 fragmentos maiores que 50ha possuem um ENN de 0, podendo significar que essas manchas ainda estão de certa forma conectadas, podemos observar isso também pelo índice de agrupamento dos pixels para a formação florestal, temos um valor de 94,8%, o que pode ser efeito de algumas grandes manchas conectadas, porém precisamos olhar para a quantidade de manchas pequenas (68.529) que é superior ao de manchas consideradas grandes (368). Essa quebra em pequenos pedaços também pode ser visto se olharmos para o índice ED global, que possui um valor de 169 m/há, mostrando um elevado efeito de borda para a região.
 Por outro lado, mesmo as atividades antrópicas ocupando 16,3% da paisagem, ela ainda possui um dos maiores índices de agregação da paisagem, cerca de 96,0%, que estão distribuídas em apenas 27.751 manchas, mostrando que formam blocos contínuos agregados. Já para o solo exposto, além de ocupar maior parte da paisagem (36,2%), o mesmo apresenta valores altos de numero de manchas (NP= 234.107) e de agregação (AI= 93,2%) mostrando que está distribuído por longas faixas do território. Já os corpos hídricos, temos uma distribuição pequena na paisagem, cerca de 0,54% total, onde é possível ver 207 manchas muito bem agrupadas (97,6%).
@@ -29,7 +30,6 @@ Por outro lado, mesmo as atividades antrópicas ocupando 16,3% da paisagem, ela 
 
 
 # Parte 2: Diagnóstico Ecológico
-## [títulos das dimensões escolhidas]
 
 A análise espacial da região do cariri Paraibano revela um ecossistema sob severo estresse. O Índice de Shannon (SHDI = 1,36) aponta para uma heterogeneidade moderada, esse valor indica que a região se configura como um mosaico fragmentado e dominado por poucas classes (Cursach, 2020). Quando olhamos para quem domina, vemos que o solo exposto e as atividades antrópicas somam 52,3% do território, enquanto as formações de vegetação nativas (floresta e arbusto) representam 45,5%. Este cenário nos mostra que a paisagem sofreu uma conversão severa para uma matriz degradada, onde a pressão antrópica junto das condições climáticas de aridez, impede a regeneração natural e pode acabar levando a extinção local de espécies. (Souza; 1999, 2006; Macedo 2023; Fischer 2007; Heinrichs 2017).
 Os valores observados para a fragmentação da área de floresta ( Alto NP, Baixo PLAND), nos indicam que paisagem atual prejudica a dispersão e reduz o fluxo gênico entre fragmentos de vegetação nativa, pois a fragmentação acaba reduzindo a migração entre fragmentos e aumenta a deriva genética e endogamia, o que altera estrutura genética e demográfica (Honnay 2005; Decocq 2021). Embora o índice de agregação da formação florestal seja um 94,8%,  esse resultado nos faz olhar para os fragmentos remanescentes, que estão agregados localmente, mas só ocupam 17,8% da paisagem total e os mesmos estão distribuídos em cerca de 70 mil manchas. Para vegetação arbustiva, o cenário é bem pior, com mais de 403 mil fragmentos desta classe. Esse resultado nos indicam que para algumas áreas, animais de porte não consigam atravessar essas áreas (Cote 2026). Se formos considerar o ENN e o AI juntos, temos uma paisagem composta por pequenos fragmentos isolados, separados por uma matriz de solo exposto e áreas agrícolas. Isso pode acabar reduzindo o deslocamento de algumas espécies, pode limitar a dispersão de sementes e diminuir o fluxo gênico dessa área (Cote 2016; Honnay 2005 ).
@@ -44,9 +44,11 @@ Hotspots de Produtividade Primária Líquida (NPP) e estoque de carbono podem es
 
 
 # Parte 3: Análise de Ecologia Política
-## Cadeia de explicação
-## Mapeamento de atores
-## Linha do tempo
+
+
+#### Linha do tempo
+
+**Fase inicial**
 
 A partir de 1663, a partir de registros, a região do Cariri começou a ser colonizada e explorada economicamente. O pioneiro foi Antônio de Oliveira Lêdo de Pernambuco, que ganhou 30 “léguas” de terras próximas ao rio Paraíba, estabelecendo uma fazenda no lugar que deu origem à cidade de Boqueirão. 
 Pela descrição apresentada no artigo de Souza 2026, fica claro que a vegetação encontrada nesse trecho do Cariri era extensa, fechada e de porte arbóreo.
@@ -59,19 +61,22 @@ As áreas próximas dos rios foram mais exploradas pela à presença de água me
 Nas áreas próximas às sedes das fazendas, a caatinga passou por processos de degradação. As queimadas foram usadas pelos colonizadores de forma repetitiva e em escala maior, tornando os solos degradados e dificultando a regeneração natural da vegetação.
 Assim, desde a segunda metade do século XVII, iniciou-se um processo de modificação dos padrões originais da caatinga. A Caatinga Arbórea, as matas ciliares, e a Caatinga Arbóreo-arbustiva Fechada foram parcialmente substituídas por agricultura de subsistência, expansão das fazendas e introdução do gado. Com o aumento da ocupação e da população, o extrativismo vegetal para alimentação animal, carvão e lenha aumentou.
  
-3.2. Domínio da cotonicultura
+**Domínio da cotonicultura**
+
 Apesar das alterações feitas pela pecuária e agricultura de subsistência, foi a cotonicultura que transformou a paisagem do Cariri. Introduzido para produção de roupas rústicas e cultivado nos vales dos rios, o algodão aumentou a diminuição da Caatinga Arbórea e da Caatinga Arbóreo-arbustiva Fechada.
 A necessidade crescente de fibras trouxe inovações como a substituição do descaroçamento manual pelas bolandeiras, aumentando a área cultivada. A partir do século XIX, a expansão do algodão sobre áreas de pastagem mandou o gado para solos mais restritos, contribuindo para a diminuição da vegetação e expansão de áreas com altos níveis de desertificação.
 Esses impactos eram maiores na seca, como a grande estiagem de 1845–1846. Já no início do século XX, registros mostravam a escassez de matas virgens e a presença de muitas áreas degradadas. Mesmo após o fim do ciclo do algodão, ficaram áreas conhecidas pela população como “terras cansadas”.
  
 O declínio da cotonicultura teve maior impacto na década de 80, junto da praga do bicudo, somada a concorrência da fibras sintéticas em 1960 e à perda de competitividade da produção paraibana.
-3.3. Fase atual
+
+**Fase atual**
+
 A partir de 1970, programas governamentais voltados à pecuária estimularam a atividade no semiárido. Entre 1971 e 1977, grande parte dos recursos do PROTERRA foram destinadas ao setor, com participação da SUDENE e do Projeto Sertanejo.
 Junto disso, também teve a introdução da algaroba (Prosopis juliflora), para reduzir a dependência das pastagens nativas. Na Paraíba, a expansão dela foi entre 1979 e 1986, ocupando áreas de rio e substituindo a mata ciliar nativa.
 Já em 1980, a pecuária teve retorno como atividade dominante no Cariri, aumentando as transformações da caatinga. 
  
 
-Guerra dos Bárbaros
+**Guerra dos Bárbaros**
 Antes do avanço da colonização sobre o interior e sobre o Cariri, é necessário considerar que essas terras já eram ocupadas por diferentes povos indígenas. A ocupação portuguesa do território brasileiro teve início em 1500, com a chegada de Pedro Álvares Cabral e a tomada formal dessas terras em nome da Coroa portuguesa. Porem, a incorporação dos sertões ao domínio colonial ocorreu mais tarde e foi associada a expansão das atividades econômicas no interior.
 Os Tapuias, que ocupavam em grande parte o interior, se destacaram pela resistência à colonização. há limitações sobre informações desses grupos, mas o termo passou a representar os povos que resistiam ao avanço colonial.
  Com o avanço das sesmarias, os indígenas reagiram defendendo seus territórios por meio de fugas, confrontos armados, ataques a fazendas e vilas, alianças entre grupos e resistência aos processos de ocupação.
@@ -79,17 +84,18 @@ Nesse contexto ocorreu a Confederação dos Cariris, ou Guerra dos Bárbaros (16
 Para conter as batalhas, o governo mandou bandeirantes e organizou expedições militares. Mas ainda assim a resistência se aumentou e incorporou outros grupos indígenas. Somente em 1713, após campanhas militares que promoveram o extermínio e dispersão das populações indígenas, o conflito foi encerrado.
 Com o fim da guerra, o estabelecimento dos europeus no Cariri aumentou e a expansão da pecuária extensiva também, que agora ocupa áreas habitadas pelos povos indígenas. Apesar das imposições da colonização, as práticas e elementos culturais indígenas permaneceram por meio de adaptações e reformulação culturais.
 
-3.3 A construção social da paisagem
+#### A construção social da paisagem
 
 Na perspectiva dos colonizadores e produtores agropecuários, a paisagem foi utilizada como recurso econômico e espaço produtivo. A ocupação territorial, expansão das fazendas, criação extensiva de gado e desenvolvimento da cotonicultura foram os principais processos que moldaram a configuração atual do Cariri, promovendo a substituição gradual da vegetação nativa.
 Para os agricultores locais de subsistência, a paisagem está associada à disponibilidade de recursos para manutenção da produção agrícola, especialmente nas áreas dos rios. O uso dessas áreas ajudou no estabelecimento de locais para o abastecimento e para o aproveitamento das condições hídricas.
 Já para os povos indígenas, o território representava um espaço de ocupação e permanência. Mas, sua capacidade de influenciar a configuração atual da paisagem foi limitada pela expansão colonial, pelos conflitos territoriais e pelo processo de expulsão e extermínio ocorrido durante a Guerra dos Bárbaros.
 
-
+#### Cadeia de explicação
+#### Mapeamento de atores
 
 # Parte 4: Proposta de Manejo Integrado
 
-## Diagnóstico integrado (síntese das partes 1–3)
+####Diagnóstico integrado (síntese das partes 1–3)
 O principal problema ecológico da paisagem do Cariri Paraibano é a elevada fragmentação e degradação da vegetação nativa, associada ao avanço do solo exposto, perda de conectividade ecológica e intensificação de processos de desertificação. Sua origem está ligada a um processo histórico de ocupação territorial iniciado com a colonização e tomada das terras indígenas, seguido pela expansão de grandes fazendas, pecuária extensiva e cultivo do algodão, que promoveram a substituição das formações naturais e o esgotamento progressivo dos recursos ambientais. Atualmente, apesar da predominância de pequenas propriedades e agricultura familiar, a recuperação dessa paisagem depende da participação conjunta de produtores rurais, agricultura familiar, poder público e estratégias de conservação, especialmente voltadas à manutenção dos remanescentes florestais e à redução da pressão sobre os recursos naturais. Como a região sofre de um baixo idh e baixa economia, a solução de reverter o histórico de degradação deve partir dos órgãos governamentais e dos tomadores de decisão. Promovendo o incentivo da restauração da capacidade produtiva do ambiente junto com o incentivo a produtividade agrícola dos proprietários que dependem diretamente dos recursos naturais para subsistência. 
 4.2 Objetivos específicos
 Objetivo 1: Proteger os principais remanescentes florestais e ampliar a conectividade da paisagem.
