@@ -14,6 +14,8 @@ website:
         href: about.qmd
       - text: Exercícios
         href: Exercícios.qmd
+      - href: prova_final.qmd
+        text: Prova Final
     page-footer: 
      center: "© 2026 • Joyce Beatriz • Ecologia de Paisagens"
 

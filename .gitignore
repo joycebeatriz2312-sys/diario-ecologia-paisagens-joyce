@@ -12,3 +12,13 @@ Arquivos temporários do R e RStudio
 .DS_Store
 Thumbs.db
 /.quarto/
+.positai
+
+**/*.quarto_ipynb
+*.tif
+*.ovr
+*.tfw
+*.aux.xml
+*.vat.cpg
+*.vat.dbf
+*.rar
